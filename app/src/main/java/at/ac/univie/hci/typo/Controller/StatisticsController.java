@@ -52,7 +52,7 @@ public class StatisticsController {
      *
      * @return element of Enum of Letters, that is most misstyped through the whole game
      */
-    private String getMostMissedKeyOfTheGame() {
+    public String getMostMissedKeyOfTheGame() {
         int max = 0;
 
         MissedLetters mostMissedLetter = null;
@@ -108,7 +108,7 @@ public class StatisticsController {
     };
 
 
-    private void checkMissedKeys(String correct, String incorrect) {
+    public void checkMissedKeys(String correct, String incorrect) {
         assert correct.length()==incorrect.length() : new IllegalArgumentException("Strings have different length");
         ArrayList<String> mustBeList = wordsManager.getArrayListOfStringsFromWord(correct);
         ArrayList<String> haveList = wordsManager.getArrayListOfStringsFromWord(incorrect);
