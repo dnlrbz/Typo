@@ -1,8 +1,5 @@
-package at.ac.univie.hci.typo.Controller;
+package at.ac.univie.hci.typo.Controller.ActivityManagement;
 
-import android.app.IntentService;
-import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;

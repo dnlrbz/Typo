@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".Controller.ActivityRecognizedService" />
-        <service android:name=".Controller.BackgroundActivityService"/>
+        <service android:name=".Controller.ActivityManagement.ActivityRecognizedService" />
+        <service android:name=".Controller.ActivityManagement.BackgroundActivityService"/>
     </application>
 
 </manifest>

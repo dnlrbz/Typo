@@ -15,14 +15,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.location.DetectedActivity;
 
-import java.util.Map;
+import java.util.ArrayList;
 
-import at.ac.univie.hci.typo.Controller.BackgroundActivityService;
-import at.ac.univie.hci.typo.Controller.ConstantsForActivities;
-import at.ac.univie.hci.typo.Controller.StatisticsController;
-import at.ac.univie.hci.typo.Model.DataBase.Database;
-import at.ac.univie.hci.typo.Model.GameStatistics;
-import at.ac.univie.hci.typo.Model.Player;
+import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
+import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtActivity, txtConfidence;
     private ImageView imgActivity;
     private Button btnStartTrcking, btnStopTracking;
+    private ArrayList<String> activitiesList;
 
 
     @Override
@@ -44,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         imgActivity = (ImageView) findViewById(R.id.img_activity);
         btnStartTrcking = (Button) findViewById(R.id.btn_start_tracking);
         btnStopTracking = (Button) findViewById(R.id.btn_stop_tracking);
+        activitiesList = new ArrayList<String>();
 
         btnStartTrcking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         btnStopTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                activitiesList = new ArrayList<String>();
+                txtActivity.setText(activitiesList.toString());
                 stopTracking();
             }
         });
@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
 
         if (confidence > ConstantsForActivities.CONFIDENCE) {
-            txtActivity.setText(label);
+            activitiesList.add(label);
+            txtActivity.setText(activitiesList.toString());
             txtConfidence.setText("Confidence: " + confidence);
             System.out.println(label + ": " + confidence);
            // imgActivity.setImageResource(icon);

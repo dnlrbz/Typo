@@ -1,4 +1,4 @@
-package at.ac.univie.hci.typo.Controller;
+package at.ac.univie.hci.typo.Controller.ActivityManagement;
 
 import android.app.PendingIntent;
 import android.app.Service;
