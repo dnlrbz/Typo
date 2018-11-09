@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menuScreenRelLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:paddingTop="0dp"
     tools:context=".View.MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:tint="#606060" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txt_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="204dp"
+            android:layout_height="62dp"
+            android:layout_alignBottom="@id/scoresButton"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="sans-serif-smallcaps"
+            android:onClick="openGameActivity"
+            android:text="@string/play_button"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="328dp" />
 
-        <TextView
-            android:id="@+id/txt_confidence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="true"
-            android:textSize="14dp" />
+        <Button
+            android:id="@+id/scoresButton"
+            android:layout_width="204dp"
+            android:layout_height="62dp"
+            android:layout_alignBottom="@+id/aboutButton"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/statistics_button"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="415dp" />
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_start_tracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Start Tracking" />
-
-    <Button
-        android:id="@+id/btn_stop_tracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Stop Tracking" />
-</RelativeLayout>
+        <Button
+            android:id="@+id/aboutButton"
+            android:layout_width="204dp"
+            android:layout_height="62dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/about_button"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="494dp" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
