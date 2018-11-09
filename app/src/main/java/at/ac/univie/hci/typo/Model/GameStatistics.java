@@ -14,25 +14,42 @@ import java.time.format.DateTimeFormatter;
 public class GameStatistics {
 
     private Player player;
+    private int id;
     private int gameCounter;
     private double accuracy;
     private int keysPerMinute;
     private String mostMissedKey;
-    private double maximumGpsSpeed;
+    private String context;
     private String timeOfTheGame;
 
 
     public GameStatistics() {
     }
 
+
+
     public GameStatistics(Player player, int gameCounter, double accuracy, int keysPerMinute,
-                          String mostMissedKey, double maximumGpsSpeed, String timeOfTheGame) {
+                          String mostMissedKey, String context, String timeOfTheGame, int id) {
+        this.id = id;
         this.player = player;
         this.gameCounter = gameCounter;
         this.accuracy = accuracy;
         this.keysPerMinute = keysPerMinute;
         this.mostMissedKey = mostMissedKey;
-        this.maximumGpsSpeed = maximumGpsSpeed;
+        this.context = context;
+        this.timeOfTheGame = timeOfTheGame;
+    }
+
+    //Constructor without ID
+    public GameStatistics(Player player, int gameCounter, double accuracy, int keysPerMinute,
+                          String mostMissedKey, String context, String timeOfTheGame) {
+
+        this.player = player;
+        this.gameCounter = gameCounter;
+        this.accuracy = accuracy;
+        this.keysPerMinute = keysPerMinute;
+        this.mostMissedKey = mostMissedKey;
+        this.context = context;
         this.timeOfTheGame = timeOfTheGame;
     }
 
@@ -42,6 +59,14 @@ public class GameStatistics {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getGameCounter() {
@@ -76,13 +101,7 @@ public class GameStatistics {
         this.mostMissedKey = mostMissedKey;
     }
 
-    public double getMaximumGpsSpeed() {
-        return maximumGpsSpeed;
-    }
 
-    public void setMaximumGpsSpeed(double maximumGpsSpeed) {
-        this.maximumGpsSpeed = maximumGpsSpeed;
-    }
 
     public String getTimeOfTheGame() {
         return timeOfTheGame;
@@ -92,15 +111,24 @@ public class GameStatistics {
         this.timeOfTheGame = timeOfTheGame;
     }
 
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
     @Override
     public String toString() {
         return "GameStatistics{" +
                 "player=" + player +
+                ", id=" + id +
                 ", gameCounter=" + gameCounter +
                 ", accuracy=" + accuracy +
                 ", keysPerMinute=" + keysPerMinute +
                 ", mostMissedKey='" + mostMissedKey + '\'' +
-                ", maximumGpsSpeed=" + maximumGpsSpeed +
+                ", context='" + context + '\'' +
                 ", timeOfTheGame='" + timeOfTheGame + '\'' +
                 '}';
     }

@@ -4,9 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,25 +19,22 @@ import java.util.ArrayList;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
-import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
-import at.ac.univie.hci.typo.Model.Player;
 import at.ac.univie.hci.typo.R;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
-    private String TAG = MainActivity.class.getSimpleName();
+    private String TAG = GameActivity.class.getSimpleName();
     BroadcastReceiver broadcastReceiver;
     private TextView txtActivity, txtConfidence;
     private ImageView imgActivity;
     private Button btnStartTrcking, btnStopTracking;
     private ArrayList<String> activitiesList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(at.ac.univie.hci.typo.R.layout.activity_game);
 
         txtActivity = (TextView) findViewById(R.id.txt_activity);
         txtConfidence = (TextView) findViewById(R.id.txt_confidence);
@@ -45,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         btnStartTrcking = (Button) findViewById(R.id.btn_start_tracking);
         btnStopTracking = (Button) findViewById(R.id.btn_stop_tracking);
         activitiesList = new ArrayList<String>();
+
+
 
         btnStartTrcking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,55 +73,56 @@ public class MainActivity extends AppCompatActivity {
         };
 
         startTracking();
-        
+
+
 
     }
 
     private void handleUserActivity(int type, int confidence) {
         //String label = getString(R.string.activity_unknown);
         String label = "Unknown activity";
-       // int icon = R.drawable.ic_still;
+        // int icon = R.drawable.ic_still;
 
         switch (type) {
             case DetectedActivity.IN_VEHICLE: {
-               // label = getString(R.string.activity_in_vehicle);
+                // label = getString(R.string.activity_in_vehicle);
                 label = "IN VEHICLE";
-               // icon = R.drawable.ic_driving;
+                // icon = R.drawable.ic_driving;
                 break;
             }
             case DetectedActivity.ON_BICYCLE: {
-               // label = getString(R.string.activity_on_bicycle);
+                // label = getString(R.string.activity_on_bicycle);
                 label = "ON BICYLCE";
-               // icon = R.drawable.ic_on_bicycle;
+                // icon = R.drawable.ic_on_bicycle;
                 break;
             }
             case DetectedActivity.ON_FOOT: {
-               // label = getString(R.string.activity_on_foot);
+                // label = getString(R.string.activity_on_foot);
                 label = "ON FOOT";
-               // icon = R.drawable.ic_walking;
+                // icon = R.drawable.ic_walking;
                 break;
             }
             case DetectedActivity.RUNNING: {
                 //label = getString(R.string.activity_running);
                 label = "RINNING";
-               // icon = R.drawable.ic_running;
+                // icon = R.drawable.ic_running;
                 break;
             }
             case DetectedActivity.STILL: {
-               // label = getString(R.string.activity_still);
+                // label = getString(R.string.activity_still);
                 label = "STILL";
                 break;
             }
             case DetectedActivity.TILTING: {
-               // label = getString(R.string.activity_tilting);
+                // label = getString(R.string.activity_tilting);
                 label = "TILTING";
-               // icon = R.drawable.ic_tilting;
+                // icon = R.drawable.ic_tilting;
                 break;
             }
             case DetectedActivity.WALKING: {
-               // label = getString(R.string.activity_walking);
+                // label = getString(R.string.activity_walking);
                 label = "WALKING";
-               // icon = R.drawable.ic_walking;
+                // icon = R.drawable.ic_walking;
                 break;
             }
             case DetectedActivity.UNKNOWN: {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             txtActivity.setText(activitiesList.toString());
             txtConfidence.setText("Confidence: " + confidence);
             System.out.println(label + ": " + confidence);
-           // imgActivity.setImageResource(icon);
+            // imgActivity.setImageResource(icon);
         }
     }
 
@@ -158,12 +158,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTracking() {
-        Intent intent1 = new Intent(MainActivity.this, BackgroundActivityService.class);
+        Intent intent1 = new Intent(GameActivity.this, BackgroundActivityService.class);
         startService(intent1);
     }
 
     private void stopTracking() {
-        Intent intent = new Intent(MainActivity.this, BackgroundActivityService.class);
+        Intent intent = new Intent(GameActivity.this, BackgroundActivityService.class);
         stopService(intent);
     }
 }

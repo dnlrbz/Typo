@@ -18,6 +18,8 @@ public interface IGameStatsDAO {
 
     boolean deleteGameStatisticsByPlayerName(String playerName);
 
+    boolean deleteGameStatisticsById(int id);
+
 
 
 }

@@ -95,12 +95,18 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
     }
 
     @Override
+    public boolean deleteGameStatisticsById(int id) {
+        mDb.delete(GAME_STATISTICS_TABLE, COLUMN_ID +" = ?", new String[]{ String.valueOf(id) });
+        return true;
+    }
+
+    @Override
     protected GameStatistics cursorToEntity(Cursor cursor) {
         GameStatistics gameStatistics = new GameStatistics();
 
         int idIndex, gameCounterIndex, accuracyIndex,
                 keysPerMinuteIndex, mostMissedKeyIndex,
-                maxGpsSpeedIndex, timeOfGameIndex, playerNameIndex;
+                contextIndex, timeOfGameIndex, playerNameIndex;
 
         if (cursor != null) {
 
@@ -120,9 +126,9 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
                 mostMissedKeyIndex = cursor.getColumnIndexOrThrow(COLUMN_MOST_MISSED_KEY);
                 gameStatistics.setMostMissedKey(cursor.getString(mostMissedKeyIndex));
             }
-            if (cursor.getColumnIndex(COLUMN_MAX_GPS_SPEED) != -1) {
-                maxGpsSpeedIndex = cursor.getColumnIndexOrThrow(COLUMN_MAX_GPS_SPEED);
-                gameStatistics.setMaximumGpsSpeed(cursor.getDouble(maxGpsSpeedIndex));
+            if (cursor.getColumnIndex(COLUMN_CONTEXT) != -1) {
+                contextIndex = cursor.getColumnIndexOrThrow(COLUMN_CONTEXT);
+                gameStatistics.setContext(cursor.getString(contextIndex));
             }
             if (cursor.getColumnIndex(COLUMN_TIME_OF_THE_GAME) != -1) {
                 timeOfGameIndex = cursor.getColumnIndexOrThrow(COLUMN_TIME_OF_THE_GAME);
@@ -132,6 +138,11 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
                 playerNameIndex = cursor.getColumnIndexOrThrow(COLUMN_PLAYER_NAME);
                 gameStatistics.setPlayer(new Player(cursor.getString(playerNameIndex)));
             }
+            if (cursor.getColumnIndex(COLUMN_ID) != -1) {
+                idIndex = cursor.getColumnIndexOrThrow(COLUMN_ID);
+                gameStatistics.setId(cursor.getInt(idIndex));
+            }
+
         }
 
         return gameStatistics;
@@ -143,9 +154,10 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
         initialValues.put(COLUMN_ACCURACY, gameStatistics.getAccuracy());
         initialValues.put(COLUMN_KEYS_PER_MINUTE, gameStatistics.getKeysPerMinute());
         initialValues.put(COLUMN_MOST_MISSED_KEY, gameStatistics.getMostMissedKey());
-        initialValues.put(COLUMN_MAX_GPS_SPEED, gameStatistics.getMaximumGpsSpeed());
+        initialValues.put(COLUMN_CONTEXT, gameStatistics.getContext());
         initialValues.put(COLUMN_TIME_OF_THE_GAME, gameStatistics.getTimeOfTheGame());
         initialValues.put(COLUMN_PLAYER_NAME, gameStatistics.getPlayer().getName());
+        initialValues.put(COLUMN_ID, gameStatistics.getId());
     }
 
     private ContentValues getContentValue() {
