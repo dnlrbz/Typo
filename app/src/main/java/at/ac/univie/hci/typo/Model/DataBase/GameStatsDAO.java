@@ -106,7 +106,7 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
 
         int idIndex, gameCounterIndex, accuracyIndex,
                 keysPerMinuteIndex, mostMissedKeyIndex,
-                contextIndex, timeOfGameIndex, playerNameIndex;
+                contextIndex, timeOfGameIndex, playerNameIndex, scoreIndex;
 
         if (cursor != null) {
 
@@ -142,6 +142,10 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
                 idIndex = cursor.getColumnIndexOrThrow(COLUMN_ID);
                 gameStatistics.setId(cursor.getInt(idIndex));
             }
+            if (cursor.getColumnIndex(COLUMN_SCORE) != -1) {
+                scoreIndex = cursor.getColumnIndexOrThrow(COLUMN_SCORE);
+                gameStatistics.setScore(cursor.getInt(scoreIndex));
+            }
 
         }
 
@@ -158,6 +162,7 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
         initialValues.put(COLUMN_TIME_OF_THE_GAME, gameStatistics.getTimeOfTheGame());
         initialValues.put(COLUMN_PLAYER_NAME, gameStatistics.getPlayer().getName());
         initialValues.put(COLUMN_ID, gameStatistics.getId());
+        initialValues.put(COLUMN_SCORE, gameStatistics.getScore());
     }
 
     private ContentValues getContentValue() {

@@ -16,6 +16,7 @@ public class GameStatistics {
     private Player player;
     private int id;
     private int gameCounter;
+    public int score;
     private double accuracy;
     private int keysPerMinute;
     private String mostMissedKey;
@@ -28,10 +29,13 @@ public class GameStatistics {
 
 
 
+
     public GameStatistics(Player player, int gameCounter, double accuracy, int keysPerMinute,
-                          String mostMissedKey, String context, String timeOfTheGame, int id) {
+                          String mostMissedKey, String context, String timeOfTheGame, int id, int score) {
         this.id = id;
         this.player = player;
+        this.score = score;
+
         this.gameCounter = gameCounter;
         this.accuracy = accuracy;
         this.keysPerMinute = keysPerMinute;
@@ -67,6 +71,14 @@ public class GameStatistics {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getGameCounter() {

@@ -11,18 +11,6 @@
     tools:context=".View.MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="344dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:srcCompat="@drawable/logo" />
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
@@ -33,10 +21,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp"
+            android:layout_alignBottom="@+id/playButton"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="false"
+            android:layout_marginBottom="120dp"
+            android:contentDescription="logo_image"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo" />
+
         <Button
             android:id="@+id/playButton"
             android:layout_width="204dp"
-            android:layout_height="wrap_content"
+            android:layout_height="62dp"
             android:layout_alignBottom="@id/scoresButton"
             android:layout_alignParentBottom="false"
             android:layout_centerHorizontal="true"
@@ -77,5 +80,6 @@
             android:textSize="35sp"
             tools:layout_editor_absoluteX="145dp"
             tools:layout_editor_absoluteY="494dp" />
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

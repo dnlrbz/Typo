@@ -3,6 +3,7 @@ package at.ac.univie.hci.typo.Model.DataBase;
 public interface IGameStatisticsSchema {
     String GAME_STATISTICS_TABLE = " statistics ";
     String COLUMN_ID = "_id";
+    String COLUMN_SCORE = "_score";
     String COLUMN_GAME_COUNTER = "_gamecounter";
     String COLUMN_ACCURACY = "_accuracy";
     String COLUMN_KEYS_PER_MINUTE = "_keys_per_minute";
@@ -17,6 +18,7 @@ public interface IGameStatisticsSchema {
             " ( " +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_GAME_COUNTER + " INTEGER NOT NULL, " +
+            COLUMN_SCORE + " INTEGER, " +
             COLUMN_ACCURACY + " REAL NOT NULL, " +
             COLUMN_KEYS_PER_MINUTE + " INTEGER NOT NULL, " +
             COLUMN_CONTEXT + " TEXT NOT NULL, " +
@@ -31,6 +33,6 @@ public interface IGameStatisticsSchema {
 
 
 
-    String[] GAME_STATISTICS_COLUMNS = new String[] { COLUMN_ID, COLUMN_GAME_COUNTER, COLUMN_ACCURACY,
+    String[] GAME_STATISTICS_COLUMNS = new String[] { COLUMN_ID, COLUMN_GAME_COUNTER, COLUMN_ACCURACY, COLUMN_SCORE,
     COLUMN_KEYS_PER_MINUTE, COLUMN_CONTEXT, COLUMN_TIME_OF_THE_GAME, COLUMN_PLAYER_NAME, COLUMN_MOST_MISSED_KEY };
 }

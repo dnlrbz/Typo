@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Typo</string>
+    <string name="app_name">Type</string>
     <string name="play_button">PLAY</string>
     <string name="statistics_button">SCORES</string>
     <string name="about_button">ABOUT</string>

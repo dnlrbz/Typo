@@ -145,7 +145,18 @@ public class StatisticsController {
             }
     }
 
-    private void testmethod() {}
+    public int getHighScore() {
+
+        int max = 0;
+
+        for (GameStatistics gameStatistics : Database.mGameStatsDAO.getAllGameStatistics()) {
+            if (max < gameStatistics.getScore()) {
+                max = gameStatistics.getScore();
+            }
+        }
+        return max;
+
+    }
 
 
 

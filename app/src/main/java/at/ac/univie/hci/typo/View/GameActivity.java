@@ -19,7 +19,9 @@ import java.util.ArrayList;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
+import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
+import at.ac.univie.hci.typo.Model.Player;
 import at.ac.univie.hci.typo.R;
 
 public class GameActivity extends AppCompatActivity {
@@ -73,7 +75,9 @@ public class GameActivity extends AppCompatActivity {
         };
 
         startTracking();
-
+        Database.mPlayerDAO.addPlayer(new Player("Vasya"));
+        Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Vasya"), 0, 89.4, 201, "P", "Bus", "22:00", 1, 100));
+        System.out.println("**********" + Database.mGameStatsDAO.getAllGameStatistics().toString());
 
 
     }
