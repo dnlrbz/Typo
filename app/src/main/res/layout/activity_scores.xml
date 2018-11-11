@@ -7,16 +7,6 @@
     tools:context=".View.ScoresActivity">
 
 
-    <ListView
-        android:id="@+id/listViewScores"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="322dp"
@@ -24,12 +14,38 @@
         android:layout_alignParentTop="true"
         android:layout_alignTop="@+id/listViewScores"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="8dp"
         android:clickable="true"
         android:fontFamily="sans-serif-smallcaps"
+        android:paddingBottom="5dp"
         android:text="HIGHSCORES"
         android:textAlignment="center"
+        android:textColor="@color/menuButtonColor"
         android:textSize="45sp"
         android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listViewScores"
+        android:layout_width="match_parent"
+        android:layout_height="529dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="57dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/listViewScores"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Tap your name to see more statistics"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="20sp" />
 </RelativeLayout>

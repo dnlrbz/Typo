@@ -3,4 +3,5 @@
     <string name="play_button">PLAY</string>
     <string name="statistics_button">SCORES</string>
     <string name="about_button">ABOUT</string>
+    <string name="hint_in_scores">Tap your name to see more statistics</string>
 </resources>
