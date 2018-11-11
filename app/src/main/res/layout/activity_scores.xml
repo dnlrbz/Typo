@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="255dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
         android:text="HIGHSCORES"
         android:textAlignment="center"
         android:textColor="@color/menuButtonColor"
-        android:textSize="40sp"
+        android:textSize="45sp"
         android:textStyle="bold" />
 
     <ListView
@@ -60,7 +60,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignTop="@+id/listViewScores"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@android:color/transparent"
         android:onClick="openMainActivity"
         android:paddingLeft="10dp"
