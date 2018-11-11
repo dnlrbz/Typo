@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.gms.plus.model.people.Person;
@@ -23,6 +25,7 @@ public class ScoresActivity extends AppCompatActivity {
 
     List<Score> scoreList;
     ListView listViewScores;
+    ImageButton buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,12 @@ public class ScoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scores);
 
         StatisticsController statisticsController = new StatisticsController();
+        buttonBack = (ImageButton) findViewById(R.id.buttonBack);
+
+
+
+
+
 
         scoreList = statisticsController.getScoresList();
 
@@ -53,6 +62,10 @@ public class ScoresActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void openMainActivity(View view) {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 
