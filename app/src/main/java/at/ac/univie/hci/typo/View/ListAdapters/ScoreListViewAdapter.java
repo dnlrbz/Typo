@@ -1,4 +1,4 @@
-package at.ac.univie.hci.typo.View;
+package at.ac.univie.hci.typo.View.ListAdapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

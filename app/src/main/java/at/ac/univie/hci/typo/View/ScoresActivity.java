@@ -6,19 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.android.gms.plus.model.people.Person;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import at.ac.univie.hci.typo.Controller.StatisticsController;
-import at.ac.univie.hci.typo.Model.DataBase.Database;
-import at.ac.univie.hci.typo.Model.Player;
 import at.ac.univie.hci.typo.Model.Score;
 import at.ac.univie.hci.typo.R;
+import at.ac.univie.hci.typo.View.ListAdapters.ScoreListViewAdapter;
 
 public class ScoresActivity extends AppCompatActivity {
 
@@ -34,6 +29,8 @@ public class ScoresActivity extends AppCompatActivity {
 
         StatisticsController statisticsController = new StatisticsController();
         buttonBack = (ImageButton) findViewById(R.id.buttonBack);
+
+
 
 
 

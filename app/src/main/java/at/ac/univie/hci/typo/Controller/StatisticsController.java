@@ -1,17 +1,15 @@
 package at.ac.univie.hci.typo.Controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import at.ac.univie.hci.typo.Model.DataBase.Database;
-import at.ac.univie.hci.typo.Model.DataBase.PlayerDAO;
 import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
 import at.ac.univie.hci.typo.Model.Score;
-import at.ac.univie.hci.typo.Model.ScoresComparator;
-import at.ac.univie.hci.typo.Model.Words;
+import at.ac.univie.hci.typo.Model.Comparators.ScoresComparator;
+import at.ac.univie.hci.typo.Model.Comparators.StatisticsComparatorByNumber;
 
 public class StatisticsController {
     /**
@@ -184,6 +182,15 @@ public class StatisticsController {
             }
         }
         return max;
+    }
+
+
+    public List<GameStatistics> getStatisticsList(String playerName) {
+        List<GameStatistics> statsList = Database.mGameStatsDAO.getGameStatisticsByPlayerName(playerName);
+
+
+        Collections.sort(statsList, new StatisticsComparatorByNumber());
+        return statsList;
     }
 
 

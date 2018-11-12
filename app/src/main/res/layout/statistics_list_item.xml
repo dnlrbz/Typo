@@ -1,6 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="0dp"
+    android:clickable="false"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="context"
+        android:textColor="@color/listItemColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView9"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="keys per minute"
+        android:textColor="@color/listItemColor"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignTop="@+id/textViewGame"
+        android:layout_below="@+id/textViewGame"
+        android:layout_marginTop="45dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="accuracy"
+        android:textColor="@color/listItemColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewGame"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="game number"
+        android:textColor="@color/listItemColor"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewGameNumber"
+        android:layout_width="132dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textViewGame"
+        android:layout_marginTop="0dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="0dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/listItemColor"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textViewKPM2"
+        android:layout_width="132dp"
+        android:layout_height="45dp"
+        android:layout_above="@+id/textView6"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="0dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/listItemColor"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewAccuracy3"
+        android:layout_width="132dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textViewGameNumber"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="0dp"
+        android:textColor="@color/listItemColor"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/listItemColor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/textViewContext"
+        android:layout_width="132dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView6"
+        android:textColor="@color/listItemColor"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:paddingBottom="0dp"
+        android:paddingTop="0dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/listItemColor"
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="0dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="most missed key"
+
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewMostMissedKey"
+        android:layout_width="132dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView6"
+        android:textColor="@color/listItemColor"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/listItemColor"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="0dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:padding="10dp"
+        android:text="Time of the game"
+        android:textAlignment="viewStart"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="132dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/listItemColor"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="0dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:padding="0dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+</RelativeLayout>
