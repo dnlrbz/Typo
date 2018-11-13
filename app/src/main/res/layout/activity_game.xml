@@ -7,46 +7,46 @@
     android:padding="16dp"
     tools:context=".View.MainActivity">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/editTextWordToTypeIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="239dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:gravity="center_vertical|center"
+        android:inputType="textNoSuggestions|textVisiblePassword"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:cursorVisible="true" />
 
-        <ImageView
-            android:id="@+id/img_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:tint="#606060" />
-
-        <TextView
-            android:id="@+id/txt_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_confidence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="true"
-            android:textSize="14dp" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_start_tracking"
+    <TextView
+        android:id="@+id/txt_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Start Tracking" />
+        android:layout_above="@+id/txt_confidence"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_confidence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewWord"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="-247dp"
+        android:textAllCaps="true"
+        android:textSize="14dp" />
 
     <Button
         android:id="@+id/btn_stop_tracking"
@@ -55,4 +55,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="Stop Tracking" />
+
+    <TextView
+        android:id="@+id/textViewWord"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="247dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/listItemColor"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 </RelativeLayout>

@@ -22,7 +22,9 @@
         <service android:name=".Controller.ActivityManagement.ActivityRecognizedService" />
         <service android:name=".Controller.ActivityManagement.BackgroundActivityService" />
 
-        <activity android:name=".View.GameActivity" />
+        <activity android:name=".View.GameActivity"
+            android:windowSoftInputMode="stateVisible"
+            />
         <activity android:name=".View.ScoresActivity" />
         <activity android:name=".View.StatisticsActivity"></activity>
     </application>

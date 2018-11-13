@@ -2,6 +2,7 @@ package at.ac.univie.hci.typo.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class WordsManager {
 
@@ -17,5 +18,16 @@ public class WordsManager {
             counter += getArrayListOfStringsFromWord(w).size();
         }
         return counter;
+    }
+
+
+    public static int getRandomNumberInRange(int min, int max) {
+
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
     }
 }

@@ -7,24 +7,32 @@ import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Random.*;
 
 import com.google.android.gms.location.DetectedActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
+import at.ac.univie.hci.typo.Controller.WordsManager;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
+import at.ac.univie.hci.typo.Model.Words;
 import at.ac.univie.hci.typo.R;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     private String TAG = GameActivity.class.getSimpleName();
     BroadcastReceiver broadcastReceiver;
@@ -32,28 +40,48 @@ public class GameActivity extends AppCompatActivity {
     private ImageView imgActivity;
     private Button btnStartTrcking, btnStopTracking;
     private ArrayList<String> activitiesList;
+    private TextView gameWord;
+    Words words = new Words();
+    int wordsCounter;
+    private EditText wordToTypeIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(at.ac.univie.hci.typo.R.layout.activity_game);
 
+
         txtActivity = (TextView) findViewById(R.id.txt_activity);
         txtConfidence = (TextView) findViewById(R.id.txt_confidence);
-        imgActivity = (ImageView) findViewById(R.id.img_activity);
-        btnStartTrcking = (Button) findViewById(R.id.btn_start_tracking);
-        btnStopTracking = (Button) findViewById(R.id.btn_stop_tracking);
+//        btnStopTracking = (Button) findViewById(R.id.btn_stop_tracking);
         activitiesList = new ArrayList<String>();
 
 
+        startTracking();
 
+        //List of 1000 Words for a game
+        wordsCounter = 0;
+
+        wordToTypeIn = (EditText) findViewById(R.id.editTextWordToTypeIn);
+        wordToTypeIn.addTextChangedListener(this);
+
+        setFocusOnEditText();
+
+
+
+
+
+
+
+/*
         btnStartTrcking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startTracking();
             }
         });
-
+*/
+/*
         btnStopTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +90,7 @@ public class GameActivity extends AppCompatActivity {
                 stopTracking();
             }
         });
+        */
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -77,8 +106,14 @@ public class GameActivity extends AppCompatActivity {
         startTracking();
 
 
-
     }
+
+    public void setFocusOnEditText() {
+        wordToTypeIn.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(wordToTypeIn, InputMethodManager.SHOW_IMPLICIT);
+    }
+
 
     private void handleUserActivity(int type, int confidence) {
         //String label = getString(R.string.activity_unknown);
@@ -87,48 +122,38 @@ public class GameActivity extends AppCompatActivity {
 
         switch (type) {
             case DetectedActivity.IN_VEHICLE: {
-                // label = getString(R.string.activity_in_vehicle);
+
                 label = "IN VEHICLE";
-                // icon = R.drawable.ic_driving;
                 break;
             }
             case DetectedActivity.ON_BICYCLE: {
-                // label = getString(R.string.activity_on_bicycle);
                 label = "ON BICYLCE";
-                // icon = R.drawable.ic_on_bicycle;
-                break;
-            }
-            case DetectedActivity.ON_FOOT: {
-                // label = getString(R.string.activity_on_foot);
-                label = "ON FOOT";
-                // icon = R.drawable.ic_walking;
                 break;
             }
             case DetectedActivity.RUNNING: {
-                //label = getString(R.string.activity_running);
-                label = "RINNING";
-                // icon = R.drawable.ic_running;
+                label = "RUNNING";
+
                 break;
             }
             case DetectedActivity.STILL: {
-                // label = getString(R.string.activity_still);
+
                 label = "STILL";
                 break;
             }
             case DetectedActivity.TILTING: {
-                // label = getString(R.string.activity_tilting);
+
                 label = "TILTING";
-                // icon = R.drawable.ic_tilting;
+
                 break;
             }
             case DetectedActivity.WALKING: {
-                // label = getString(R.string.activity_walking);
+
                 label = "WALKING";
-                // icon = R.drawable.ic_walking;
+
                 break;
             }
             case DetectedActivity.UNKNOWN: {
-                //label = getString(R.string.activity_unknown);
+
                 label ="Activity Unknown";
                 break;
             }
@@ -140,7 +165,6 @@ public class GameActivity extends AppCompatActivity {
             txtActivity.setText(activitiesList.toString());
             txtConfidence.setText("Confidence: " + confidence);
             System.out.println(label + ": " + confidence);
-            // imgActivity.setImageResource(icon);
         }
     }
 
@@ -162,10 +186,36 @@ public class GameActivity extends AppCompatActivity {
     private void startTracking() {
         Intent intent1 = new Intent(GameActivity.this, BackgroundActivityService.class);
         startService(intent1);
+        /**
+         * Setting new Words in Text View
+         */
+        gameWord = (TextView) findViewById(R.id.textViewWord);
+        //TODO Change this to TextWatcher
+        gameWord.setText(words.getList().get(wordsCounter));
+
     }
 
     private void stopTracking() {
         Intent intent = new Intent(GameActivity.this, BackgroundActivityService.class);
         stopService(intent);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable typedWord) {
+        if (typedWord.toString().length() == gameWord.getText().length()) {
+            wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
+            gameWord.setText(words.getList().get(wordsCounter));
+            wordToTypeIn.setText("");
+        }
     }
 }
