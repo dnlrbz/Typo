@@ -16,6 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random.*;
 
 import com.google.android.gms.location.DetectedActivity;
@@ -25,6 +29,7 @@ import java.util.Random;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
+import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Controller.WordsManager;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
@@ -41,56 +46,26 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
     private Button btnStartTrcking, btnStopTracking;
     private ArrayList<String> activitiesList;
     private TextView gameWord;
-    Words words = new Words();
+    Words words;
     int wordsCounter;
+    int scoreCounter;
     private EditText wordToTypeIn;
+    private TextView score;
+    ArrayList<String> correctWords;
+    ArrayList<String> incorrectWords;
+    StatisticsController sController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(at.ac.univie.hci.typo.R.layout.activity_game);
 
-
-        txtActivity = (TextView) findViewById(R.id.txt_activity);
-        txtConfidence = (TextView) findViewById(R.id.txt_confidence);
-//        btnStopTracking = (Button) findViewById(R.id.btn_stop_tracking);
-        activitiesList = new ArrayList<String>();
-
-
-        startTracking();
-
-        //List of 1000 Words for a game
-        wordsCounter = 0;
-
-        wordToTypeIn = (EditText) findViewById(R.id.editTextWordToTypeIn);
-        wordToTypeIn.addTextChangedListener(this);
-
+        initializeAllVariables();
+        startTrackingActivities();
         setFocusOnEditText();
 
 
 
-
-
-
-
-/*
-        btnStartTrcking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startTracking();
-            }
-        });
-*/
-/*
-        btnStopTracking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activitiesList = new ArrayList<String>();
-                txtActivity.setText(activitiesList.toString());
-                stopTracking();
-            }
-        });
-        */
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -103,9 +78,27 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
             }
         };
 
-        startTracking();
 
 
+    }
+
+    private void initializeAllVariables() {
+        sController = new StatisticsController();
+        //Two arraylists to compare and compute statistics in StatisticsManager
+        correctWords = new ArrayList<String>();
+        incorrectWords = new ArrayList<String>();
+        words= new Words();
+        score = (TextView) findViewById(R.id.textViewScore);
+        txtActivity = (TextView) findViewById(R.id.txt_activity);
+        txtConfidence = (TextView) findViewById(R.id.txt_confidence);
+//        btnStopTracking = (Button) findViewById(R.id.btn_stop_tracking);
+        //List of all activities during the game
+        activitiesList = new ArrayList<String>();
+        wordsCounter = 0;
+        scoreCounter = 0;
+        wordToTypeIn = (EditText) findViewById(R.id.editTextWordToTypeIn);
+        wordToTypeIn.addTextChangedListener(this);
+        score.setText(String.valueOf("SCORE: "+scoreCounter));
     }
 
     public void setFocusOnEditText() {
@@ -162,7 +155,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
         if (confidence > ConstantsForActivities.CONFIDENCE) {
             activitiesList.add(label);
-            txtActivity.setText(activitiesList.toString());
+            txtActivity.setText(activitiesList.get(activitiesList.size()-1).toString());
             txtConfidence.setText("Confidence: " + confidence);
             System.out.println(label + ": " + confidence);
         }
@@ -183,7 +176,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
 
-    private void startTracking() {
+    private void startTrackingActivities() {
         Intent intent1 = new Intent(GameActivity.this, BackgroundActivityService.class);
         startService(intent1);
         /**
@@ -212,10 +205,34 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable typedWord) {
-        if (typedWord.toString().length() == gameWord.getText().length()) {
+        //Ignoring backspaces
+        String typedIn = typedWord.toString().replaceAll("\\s+","");
+        String initialWord = gameWord.getText().toString();
+        if (typedIn.length() == initialWord.length()) {
+            wordToTypeIn.setText("");
+            correctWords.add(initialWord);
+            incorrectWords.add(typedIn);
+            if (typedIn.equalsIgnoreCase(initialWord)) {
+                //TODO change to timer! now game ends by score==20
+                if (scoreCounter==20) {
+                    endGameComputeStatistics(new Player("VASYA"));
+                }
+                scoreCounter++;
+                score.setText(String.valueOf("SCORE: "+scoreCounter));
+            }
             wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
             gameWord.setText(words.getList().get(wordsCounter));
-            wordToTypeIn.setText("");
+
+            System.out.println("CORRECT WORDS LIST: " + correctWords.toString());
+            System.out.println("INCORRECT WORDS: " + incorrectWords.toString());
         }
+
+
+    }
+
+    private void endGameComputeStatistics(Player player) {
+        GameStatistics gameStatistics = sController.
+                computeAndGetWholeGameStatistics(correctWords, incorrectWords, player, scoreCounter, activitiesList);
+        System.out.println("***GAMESTATS***  " +gameStatistics.toString());
     }
 }

@@ -45,7 +45,7 @@ public class GameStatistics {
     }
 
     //Constructor without ID
-    public GameStatistics(Player player, int gameCounter, double accuracy, int keysPerMinute,
+    public GameStatistics(Player player, int gameCounter, Double accuracy, int keysPerMinute,
                           String mostMissedKey, String context, String timeOfTheGame) {
 
         this.player = player;

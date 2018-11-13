@@ -9,8 +9,8 @@
 
     <EditText
         android:id="@+id/editTextWordToTypeIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="237dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical|center_horizontal"
@@ -21,7 +21,7 @@
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="40sp"
+        android:textSize="5sp"
         android:textStyle="bold"
         tools:cursorVisible="true" />
 
@@ -29,9 +29,11 @@
         android:id="@+id/txt_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/txt_confidence"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignStart="@+id/editTextWordToTypeIn"
+        android:layout_below="@+id/textViewScore"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="18dp"
@@ -63,10 +65,27 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="247dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical|center_horizontal"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.1"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="40sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="TextView"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="30sp" />
+
 </RelativeLayout>
