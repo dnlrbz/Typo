@@ -35,7 +35,7 @@ public class StatisticsController {
         String mostMissedKey = getMostMissedKeyOfTheGame();
         int keysPerMinute = wordsManager.countKeysOfAllWords(incorrectWordsList);
         int gameCounter = Database.mGameStatsDAO.getGameStatisticsByPlayerName(player.getName()).size();
-
+//TODO clear edittext after new word appears
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("HH:mm");
         String timeOfGame =  format.format(date);
