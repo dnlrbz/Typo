@@ -31,7 +31,7 @@ public class StatisticsActivity extends AppCompatActivity {
         textViewHeader = (TextView) findViewById(R.id.textViewHead);
         textViewHeader.setText("STATISTICS\n" + playerName);
 
-        statisticsList = sController.getStatisticsList(playerName);
+        statisticsList = sController.getStatisticsListForPlayer(playerName);
 
         listViewStatisctics = (ListView) findViewById(R.id.listViewStats);
 

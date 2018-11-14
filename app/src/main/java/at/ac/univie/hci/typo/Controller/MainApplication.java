@@ -13,7 +13,7 @@ public class MainApplication extends Application {
     public static Database mDb;
 
     /**
-     * Method to create and open a Database for further use
+     * Method to create and open a Database for further use as soon as application is started
      */
     @Override
     public void onCreate() {
@@ -23,6 +23,9 @@ public class MainApplication extends Application {
 
     }
 
+    /**
+     * Close the DB as soon as Application is terminated
+     */
     @Override
     public void onTerminate() {
         mDb.close();

@@ -15,15 +15,19 @@ import at.ac.univie.hci.typo.Model.Comparators.ScoresComparator;
 import at.ac.univie.hci.typo.Model.Comparators.StatisticsComparatorByNumber;
 
 public class StatisticsController {
-    /**
-     * Enum, representing letters with their counters (how many times it was misstyped) and their String Values.
-     */
+
     WordsManager wordsManager = new WordsManager();
+
 
 
     /**
      * Implementation of Facade and FactoryMethod patterns, returns whole statistics using inside methods
-     * @return
+     * @param correctWordsArrayList
+     * @param incorrectWordsList
+     * @param player
+     * @param score of a game
+     * @param activities during the game
+     * @return complete Game Statistics
      */
     public GameStatistics computeAndGetWholeGameStatistics(ArrayList<String> correctWordsArrayList, ArrayList<String> incorrectWordsList, Player player, int score, ArrayList<String> activities){
         /**
@@ -35,7 +39,7 @@ public class StatisticsController {
         String mostMissedKey = getMostMissedKeyOfTheGame();
         int keysPerMinute = wordsManager.countKeysOfAllWords(incorrectWordsList);
         int gameCounter = Database.mGameStatsDAO.getGameStatisticsByPlayerName(player.getName()).size();
-//TODO clear edittext after new word appears
+        //TODO clear edittext after new word appears
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("HH:mm");
         String timeOfGame =  format.format(date);
@@ -47,7 +51,11 @@ public class StatisticsController {
                 keysPerMinute, mostMissedKey, context, timeOfGame);
     }
 
-
+    /**
+     *
+     * @param activities
+     * @return the most frequent activity during the game. If there is only once the "in vehicle" action, then it will be returned, because it takes 20-40 seconds to determine the "in vehicle" activity
+     */
     private String getContextOfAGame(ArrayList<String> activities) {
 
         assert activities.size()>0 : "THERE IS NO ACTIVITIES!";
@@ -79,7 +87,12 @@ public class StatisticsController {
         return popular;
     }
 
-
+    /**
+     *
+     * @param correctWordsArrayList
+     * @param incorrectWordsList
+     * @return Computed Accuracy with formula accuracy = (correct input letters/all input letters)
+     */
     private Double computeAccuracy(ArrayList<String> correctWordsArrayList, ArrayList<String> incorrectWordsList) {
         int allCharsInWordsInArrayCounter = 0;
 
@@ -135,6 +148,10 @@ public class StatisticsController {
         return null;
     }
 
+
+    /**
+     * Enum, representing letters with their counters (how many times it was misstyped) and their String Values.
+     */
     private enum MissedLetters {
         A (0,"A"), B(0,"B"), C(0,"C"), D(0,"D"), E(0,"E"), F(0,"F"), G(0,"G"), H(0,"H"), I(0,"I"),
         J(0,"J"), K(0,"K"), L(0,"L"), M(0,"M"), N(0,"N"), O(0,"O"), P(0,"P"), Q(0,"Q"), R(0,"R"),
@@ -168,7 +185,11 @@ public class StatisticsController {
 
     };
 
-
+    /**
+     * A method compares all words and determines which letter is most frequently missing
+     * @param correct list of correct words
+     * @param incorrect list of incorrect words
+     */
     public void checkMissedKeys(String correct, String incorrect) {
         assert correct.length()==incorrect.length() : new IllegalArgumentException("Strings have different length");
         ArrayList<String> mustBeList = wordsManager.getArrayListOfStringsFromWord(correct);
@@ -185,8 +206,11 @@ public class StatisticsController {
     }
 
 
-
-
+    /**
+     *
+     * @param l
+     * @return element of an ENUM, which string value is l
+     */
     private MissedLetters getMissedLetterByItsStringValue(String l) {
         try {
             for (MissedLetters letter : MissedLetters.values()) {
@@ -200,12 +224,19 @@ public class StatisticsController {
         return null;
     }
 
+    /**
+     * sets all counters in enum to zero
+     */
     private void setMissedKeyCounterToZero() {
             for (MissedLetters letters: MissedLetters.values()){
                 letters.setCounter(0);
             }
     }
 
+    /**
+     *
+     * @return the highest score of all games
+     */
     public int getHighScore() {
 
         int max = 0;
@@ -219,7 +250,10 @@ public class StatisticsController {
 
     }
 
-
+    /**
+     * Creates a List with Scores from all Players
+     * @return List with all scores
+     */
     public List<Score> getScoresList() {
         List<Score> scoreList = new ArrayList<Score>();
 
@@ -232,7 +266,11 @@ public class StatisticsController {
         return scoreList;
     }
 
-
+    /**
+     *
+     * @param player
+     * @return a score of a particular player
+     */
     private int getMaxScoreOfPlayer(Player player) {
         int max = 0;
         for (GameStatistics gameStatistics: Database.mGameStatsDAO.getGameStatisticsByPlayerName(player.getName())) {
@@ -243,8 +281,12 @@ public class StatisticsController {
         return max;
     }
 
-
-    public List<GameStatistics> getStatisticsList(String playerName) {
+    /**
+     *
+     * @param playerName
+     * @return sorted list by gameNumber with statistics for player
+     */
+    public List<GameStatistics> getStatisticsListForPlayer(String playerName) {
         List<GameStatistics> statsList = Database.mGameStatsDAO.getGameStatisticsByPlayerName(playerName);
 
 

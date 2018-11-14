@@ -6,12 +6,24 @@ import java.util.Random;
 
 public class WordsManager {
 
+
+    /**
+     *
+     * @param word
+     * @return returns a list with all letters from a word
+     */
     public ArrayList<String> getArrayListOfStringsFromWord(String word) {
         ArrayList<String> lettersOfWord = new ArrayList<String>(Arrays.asList(word.split("")));
         lettersOfWord.remove(0);
         return lettersOfWord;
     }
 
+
+    /**
+     *
+     * @param incorrectWordsList
+     * @return count letters in all words in a list
+     */
     public int countKeysOfAllWords(ArrayList<String> incorrectWordsList) {
         int counter = 0;
         for (String w : incorrectWordsList) {
@@ -20,7 +32,12 @@ public class WordsManager {
         return counter;
     }
 
-
+    /**
+     *
+     * @param min
+     * @param max
+     * @return random number in range
+     */
     public static int getRandomNumberInRange(int min, int max) {
 
         if (min >= max) {

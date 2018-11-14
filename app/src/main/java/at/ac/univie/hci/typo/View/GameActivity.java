@@ -65,8 +65,9 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         setFocusOnEditText();
 
 
-
-
+        /**
+         * If an activity is recognized
+         */
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -82,6 +83,9 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
+    /**
+     * Simple method to initialize all variables, to increase the readability of code
+     */
     private void initializeAllVariables() {
         sController = new StatisticsController();
         //Two arraylists to compare and compute statistics in StatisticsManager
@@ -101,13 +105,20 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         score.setText(String.valueOf("SCORE: "+scoreCounter));
     }
 
+    /**
+     * Method sets focus on the field where the words should be entered
+     */
     public void setFocusOnEditText() {
         wordToTypeIn.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(wordToTypeIn, InputMethodManager.SHOW_IMPLICIT);
     }
 
-
+    /**
+     * Method handles the determined activity(context)
+     * @param type of activity
+     * @param confidence in percent of activity
+     */
     private void handleUserActivity(int type, int confidence) {
         //String label = getString(R.string.activity_unknown);
         String label = "Unknown activity";
@@ -176,6 +187,9 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
 
+    /**
+     * Method called by start of a game to begin tracking activities
+     */
     private void startTrackingActivities() {
         Intent intent1 = new Intent(GameActivity.this, BackgroundActivityService.class);
         startService(intent1);
@@ -188,6 +202,9 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
+    /**
+     * Stop tracking activities
+     */
     private void stopTracking() {
         Intent intent = new Intent(GameActivity.this, BackgroundActivityService.class);
         stopService(intent);
@@ -203,6 +220,10 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
+    /**
+     * After some text is entered in the field
+     * @param typedWord
+     */
     @Override
     public void afterTextChanged(Editable typedWord) {
         //Ignoring backspaces
@@ -230,9 +251,13 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
+    /**
+     * End a game and compute and save all Statistics
+     * @param player
+     */
     private void endGameComputeStatistics(Player player) {
         GameStatistics gameStatistics = sController.
                 computeAndGetWholeGameStatistics(correctWords, incorrectWords, player, scoreCounter, activitiesList);
-        System.out.println("***GAMESTATS***  " +gameStatistics.toString());
+        Database.mGameStatsDAO.addGameStatistics(gameStatistics);
     }
 }
