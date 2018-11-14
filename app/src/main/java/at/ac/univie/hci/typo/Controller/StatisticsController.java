@@ -294,6 +294,16 @@ public class StatisticsController {
         return statsList;
     }
 
+    public boolean playerExists(Player player) {
+        boolean exists = false;
+        for (Player player1: Database.mPlayerDAO.getAllPlayers()) {
+            if (player.getName().equalsIgnoreCase(player1.getName())) {
+                exists = true;
+            }
+        }
+        return exists;
+    }
+
 
 
 
