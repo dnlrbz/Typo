@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
+import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
 import at.ac.univie.hci.typo.R;
 
@@ -20,6 +21,13 @@ public class AfterGameActivity extends AppCompatActivity {
     private ListView namesListView;
     private String playerName;
     private StatisticsController sController;
+    private String mostMissedKey;
+    private Double accuracy;
+    private String time;
+    private int score;
+    private int keysPerMinute;
+    private String context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +53,26 @@ public class AfterGameActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playerName = editTextName.getText().toString();
-                if (sController.playerExists(new Player(playerName))) {
-                    //TODO save stats for existing player
-                }
-                else {
-                    //TODO save stats for playerName
+                playerName = editTextName.getText().toString().replaceAll("\\s+","");
+                int id = Database.mGameStatsDAO.getAllGameStatistics().size();
+                if (playerName.length() != 0) {
+                    int gameCounter = sController.getGameCounter(new Player(playerName));
+
+                    if (sController.playerExists(new Player(playerName))) {
+
+                        GameStatistics gameStatistics = new GameStatistics(new Player(playerName), gameCounter,
+                                accuracy, keysPerMinute, mostMissedKey, context, time,id, score);
+                        Database.mGameStatsDAO.addGameStatistics(gameStatistics);
+                    } else {
+                        //TODO save stats for playerName
+                        Database.mPlayerDAO.addPlayer(new Player(playerName));
+                        GameStatistics gameStatistics = new GameStatistics(new Player(playerName), gameCounter,
+                                accuracy, keysPerMinute, mostMissedKey, context, time,id, score);
+                        Database.mGameStatsDAO.addGameStatistics(gameStatistics);
+                    }
+                    Intent intent = new Intent(AfterGameActivity.this, ScoresActivity.class);
+                    startActivity(intent);
+
                 }
             }
         });
@@ -62,9 +84,19 @@ public class AfterGameActivity extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.saveButton);
         namesListView = (ListView) findViewById(R.id._namesList);
         sController = new StatisticsController();
+        Bundle bundle = getIntent().getExtras();
+
+        mostMissedKey = bundle.getString("mostMissedKey");
+        accuracy = Double.valueOf(sController.getDecimalFormat().format(bundle.getDouble("accuracy")));
+        time = bundle.getString("time");
+        score = bundle.getInt("score");
+        keysPerMinute = bundle.getInt("keysPerMinute");
+        context = bundle.getString("context");
+
+
     }
 
     private void saveStatsForPlayerName() {
-        //TODO function for saving stats
+        //TODO function for saving statistics
     }
 }

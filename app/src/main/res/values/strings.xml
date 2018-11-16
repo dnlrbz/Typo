@@ -4,4 +4,6 @@
     <string name="statistics_button">SCORES</string>
     <string name="about_button">ABOUT</string>
     <string name="hint_in_scores">Tap your name to see more statistics</string>
+    <string name="button_start_game">start game!</string>
+    <string name="warning_before_game">if you are ready press this button and type as fast as you can!</string>
 </resources>

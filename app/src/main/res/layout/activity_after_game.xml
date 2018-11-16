@@ -14,15 +14,16 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="103dp"
-        android:cursorVisible="false"
+        android:cursorVisible="true"
         android:ems="10"
+        android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical|center"
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="5sp"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
         android:textStyle="bold"
-        tools:cursorVisible="true" />
+        tools:cursorVisible="false" />
 
     <TextView
         android:id="@+id/textViewGame2"
@@ -75,5 +76,6 @@
         android:layout_alignTop="@+id/textViewGame2"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="26dp"
-        android:layout_marginTop="292dp" />
+        android:layout_marginTop="292dp"
+        android:clickable="true" />
 </RelativeLayout>

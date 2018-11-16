@@ -34,16 +34,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toGame = (Button) findViewById(R.id.playButton);
-        Database.mPlayerDAO.deleteAllPlayers();
-        Database.mPlayerDAO.addPlayer(new Player("Vasya"));
-        Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Vasya"), 1, 89.4, 201, "P", "Bus", "22:00", 1, 100));
+
+        //Database.mPlayerDAO.addPlayer(new Player("Vasya"));
+        //Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Vasya"), 1, 89.4, 201, "P", "Bus", "22:00", 1, 100));
         System.out.println("**********" + Database.mGameStatsDAO.getAllGameStatistics().toString());
 
-        Database.mPlayerDAO.addPlayer(new Player("Sasha"));
-        Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Sasha"), 3, 90.1, 199, "S", "Walking", "11:42", 2, 78));
-        Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Sasha"), 1, 90.1, 199, "S", "Walking", "11:42", 3, 78));
+        //Database.mPlayerDAO.addPlayer(new Player("Sasha"));
+        //Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Sasha"), 3, 90.1, 199, "S", "Walking", "11:42", 2, 78));
+        //Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Sasha"), 1, 90.1, 199, "S", "Walking", "11:42", 3, 78));
 
-        Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Sasha"), 2, 90.1, 199, "S", "Walking", "11:42", 4, 78));
+        //Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Sasha"), 2, 90.1, 199, "S", "Walking", "11:42", 4, 78));
 
     }
 

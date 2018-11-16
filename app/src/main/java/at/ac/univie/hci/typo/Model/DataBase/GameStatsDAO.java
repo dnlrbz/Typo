@@ -75,6 +75,7 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
     public boolean addGameStatistics(GameStatistics gameStatistics) {
         setContentValue(gameStatistics);
         try {
+            System.out.println("OK *** database saved statistics for + " + gameStatistics.getPlayer().getName());
             return super.insert(GAME_STATISTICS_TABLE, getContentValue()) > 0;
         } catch (SQLiteConstraintException ex) {
             Log.w("Database", ex.getMessage());

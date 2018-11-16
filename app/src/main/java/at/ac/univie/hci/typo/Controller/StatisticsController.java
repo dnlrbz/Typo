@@ -1,12 +1,15 @@
 package at.ac.univie.hci.typo.Controller;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
@@ -38,17 +41,27 @@ public class StatisticsController {
         }
         String mostMissedKey = getMostMissedKeyOfTheGame();
         int keysPerMinute = wordsManager.countKeysOfAllWords(incorrectWordsList);
-        int gameCounter = Database.mGameStatsDAO.getGameStatisticsByPlayerName(player.getName()).size();
+
         //TODO clear edittext after new word appears
+
+        Double accuracy = computeAccuracy(correctWordsArrayList, incorrectWordsList);
+        String context = getContextOfAGame(activities);
+        String timeOfGame = getTimeOfTheGame();
+        int gameCounter= getGameCounter(player);
+
+        return new GameStatistics(player, gameCounter, accuracy,
+                keysPerMinute, mostMissedKey, context, timeOfGame,gameCounter );
+    }
+
+    public int getGameCounter(Player player) {
+        return Database.mGameStatsDAO.getGameStatisticsByPlayerName(player.getName()).size()+1;
+    }
+
+    public String getTimeOfTheGame() {
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("HH:mm");
         String timeOfGame =  format.format(date);
-        Double accuracy = computeAccuracy(correctWordsArrayList, incorrectWordsList);
-        String context = getContextOfAGame(activities);
-
-
-        return new GameStatistics(player, gameCounter, accuracy,
-                keysPerMinute, mostMissedKey, context, timeOfGame);
+        return timeOfGame;
     }
 
     /**
@@ -56,11 +69,13 @@ public class StatisticsController {
      * @param activities
      * @return the most frequent activity during the game. If there is only once the "in vehicle" action, then it will be returned, because it takes 20-40 seconds to determine the "in vehicle" activity
      */
-    private String getContextOfAGame(ArrayList<String> activities) {
+    public String getContextOfAGame(ArrayList<String> activities) {
 
-        assert activities.size()>0 : "THERE IS NO ACTIVITIES!";
+        assert activities.size() > 0 : "THERE IS NO ACTIVITIES!";
 
-
+        if (activities.size() == 0) {
+            return Activities.STILL_ACTIVITY;
+        }
 
         int count = 1, tempCount;
         String popular = activities.get(0);
@@ -68,8 +83,8 @@ public class StatisticsController {
         for (int i = 0; i < (activities.size() - 1); i++)
         {
             temp = activities.get(i);
-            if (temp.equalsIgnoreCase("IN VEHICLE")) {
-                return "IN VEHICLE";
+            if (temp.equalsIgnoreCase(Activities.IN_VEHICLE_ACTIVITY)) {
+                return Activities.IN_VEHICLE_ACTIVITY;
             }
             tempCount = 0;
             for (int j = 1; j < activities.size(); j++)
@@ -93,7 +108,7 @@ public class StatisticsController {
      * @param incorrectWordsList
      * @return Computed Accuracy with formula accuracy = (correct input letters/all input letters)
      */
-    private Double computeAccuracy(ArrayList<String> correctWordsArrayList, ArrayList<String> incorrectWordsList) {
+    public Double computeAccuracy(ArrayList<String> correctWordsArrayList, ArrayList<String> incorrectWordsList) {
         int allCharsInWordsInArrayCounter = 0;
 
         int correctCharsInWordsInArrayCounter = 0;
@@ -145,7 +160,7 @@ public class StatisticsController {
 
             return mostMissedLetter.getName();
         }
-        return null;
+        return mostMissedLetter!=null? mostMissedLetter.getName() : "NOT EXIST";
     }
 
 
@@ -302,6 +317,12 @@ public class StatisticsController {
             }
         }
         return exists;
+    }
+
+    public static DecimalFormat getDecimalFormat() {
+        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
+        dfs.setDecimalSeparator('.');
+        return new DecimalFormat("0.0", dfs);
     }
 
 

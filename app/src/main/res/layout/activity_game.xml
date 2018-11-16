@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".View.MainActivity">
+    tools:context=".View.GameActivity">
+
+    <ImageButton
+        android:id="@+id/buttonBack2"
+        android:layout_width="57dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:layout_toStartOf="@+id/textViewGame"
+        android:background="@android:color/transparent"
+        android:onClick="openMainActivityFromGame"
+        android:paddingLeft="20dp"
+        app:srcCompat="@drawable/back_filled" />
 
     <EditText
         android:id="@+id/editTextWordToTypeIn"
@@ -50,14 +62,6 @@
         android:textAllCaps="true"
         android:textSize="14dp" />
 
-    <Button
-        android:id="@+id/btn_stop_tracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Stop Tracking" />
-
     <TextView
         android:id="@+id/textViewWord"
         android:layout_width="wrap_content"
@@ -79,13 +83,54 @@
         android:id="@+id/textViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewTimer"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="35dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/buttonStartGame"
+        android:layout_width="257dp"
+        android:layout_height="109dp"
+        android:layout_alignTop="@+id/txt_confidence"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/button_start_game"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_activity"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/warning_before_game"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="48sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

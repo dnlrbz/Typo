@@ -27,7 +27,8 @@
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".View.ScoresActivity" />
         <activity android:name=".View.StatisticsActivity" />
-        <activity android:name=".View.AfterGameActivity"></activity>
+        <activity android:name=".View.AfterGameActivity" />
+        <activity android:name=".View.TransportAskingActivity"></activity>
     </application>
 
 </manifest>

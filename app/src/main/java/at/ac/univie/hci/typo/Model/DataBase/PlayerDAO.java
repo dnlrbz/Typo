@@ -88,6 +88,7 @@ public class PlayerDAO extends DBContentProvider implements IPlayerSchema, IPlay
         player.setName(player.getName().toUpperCase());
         setContentValue(player);
         try {
+            System.out.println("OK *** database saved player + " + player.getName());
             return super.insert(PLAYER_TABLE, getContentValue()) > 0;
         } catch (SQLiteConstraintException se) {
             Log.w("Database**********", se.getMessage());
