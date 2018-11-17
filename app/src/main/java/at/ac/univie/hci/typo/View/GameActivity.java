@@ -44,26 +44,27 @@ import at.ac.univie.hci.typo.R;
 
 public class GameActivity extends AppCompatActivity implements TextWatcher {
 
-    private String TAG = GameActivity.class.getSimpleName();
-    BroadcastReceiver broadcastReceiver;
-    private TextView txtActivity, txtConfidence;
-    private ImageView imgActivity;
-    private Button btnStartTrcking, btnStopTracking;
-    private ArrayList<String> activitiesList;
-    private TextView gameWord;
-    Words words;
-    int wordsCounter;
-    int scoreCounter;
-    private EditText wordToTypeIn;
-    private TextView score;
-    ArrayList<String> correctWords;
-    ArrayList<String> incorrectWords;
-    StatisticsController sController;
-    private Button startGame;
-    private TextView warningGame;
-    private TextView timerTextView;
-    private WordsManager wordsManager;
-    private ImageButton backButton;
+        private String TAG = GameActivity.class.getSimpleName();
+        BroadcastReceiver broadcastReceiver;
+        private TextView txtActivity, txtConfidence;
+        private ImageView imgActivity;
+        private Button btnStartTrcking, btnStopTracking;
+        private ArrayList<String> activitiesList;
+        private TextView gameWord;
+        Words words;
+        int wordsCounter;
+        int scoreCounter;
+        private EditText wordToTypeIn;
+        private TextView score;
+        ArrayList<String> correctWords;
+        ArrayList<String> incorrectWords;
+        StatisticsController sController;
+        private Button startGame;
+        private TextView warningGame;
+        private TextView timerTextView;
+        private WordsManager wordsManager;
+        private ImageButton backButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         setContentView(at.ac.univie.hci.typo.R.layout.activity_game);
 
         initializeAllVariables();
-        startTrackingActivities();
+
 
 
 
@@ -88,6 +89,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                 }
             }
         };
+        startTrackingActivities();
 
 
 
@@ -175,75 +177,83 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      */
     private void handleUserActivity(int type, int confidence) {
         //String label = getString(R.string.activity_unknown);
-        String label = "Unknown activity";
-        // int icon = R.drawable.ic_still;
+        if (confidence > ConstantsForActivities.CONFIDENCE && type!=DetectedActivity.UNKNOWN) {
+            String label = "";
+            // int icon = R.drawable.ic_still;
 
-        switch (type) {
-            case DetectedActivity.IN_VEHICLE: {
+            switch (type) {
+                case DetectedActivity.IN_VEHICLE: {
 
-                label = Activities.IN_VEHICLE_ACTIVITY;
-                break;
+                    label = Activities.IN_VEHICLE_ACTIVITY;
+                    break;
+                }
+                case DetectedActivity.ON_BICYCLE: {
+                    label = Activities.ON_BICYCLE_ACTIVITY;
+                    break;
+                }
+                case DetectedActivity.RUNNING: {
+                    label = Activities.RUNNING_ACTIVITY;
+
+                    break;
+                }
+                case DetectedActivity.STILL: {
+
+                    label = Activities.STILL_ACTIVITY;
+                    break;
+                }
+                case DetectedActivity.TILTING: {
+
+                    label = Activities.TILTING_ACTIVITY;
+
+                    break;
+                }
+                case DetectedActivity.WALKING: {
+
+                    label = Activities.WALKING_ACTIVITY;
+
+                    break;
+                }
+                case DetectedActivity.UNKNOWN: {
+
+                    //label ="Activity Unknown";
+                    break;
+                }
             }
-            case DetectedActivity.ON_BICYCLE: {
-                label = Activities.ON_BICYCLE_ACTIVITY;
-                break;
-            }
-            case DetectedActivity.RUNNING: {
-                label = Activities.RUNNING_ACTIVITY;
+            Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
 
-                break;
-            }
-            case DetectedActivity.STILL: {
+            //if (confidence > ConstantsForActivities.CONFIDENCE) {
+                getBonusPoints(label);
+                activitiesList.add(label);
+                txtActivity.setText(activitiesList.get(activitiesList.size() - 1).toString());
 
-                label = Activities.STILL_ACTIVITY;
-                break;
-            }
-            case DetectedActivity.TILTING: {
-
-                label = Activities.TILTING_ACTIVITY;
-
-                break;
-            }
-            case DetectedActivity.WALKING: {
-
-                label = Activities.WALKING_ACTIVITY;
-
-                break;
-            }
-            case DetectedActivity.UNKNOWN: {
-
-                label ="Activity Unknown";
-                break;
-            }
-        }
-        Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
-
-        if (confidence > ConstantsForActivities.CONFIDENCE) {
-            getBonusPoints(label);
-            activitiesList.add(label);
-            txtActivity.setText(activitiesList.get(activitiesList.size()-1).toString());
-            txtConfidence.setText("Confidence: " + confidence);
-            System.out.println(label + ": " + confidence);
+                System.out.println(label + ": " + confidence);
+            //}
         }
     }
 
 
     public void getBonusPoints(String activity) {
+
         switch (activity) {
             case Activities.STILL_ACTIVITY:
-                scoreCounter = (int) (scoreCounter*1.1);
+                scoreCounter =  scoreCounter + 1;
+                txtConfidence.setText("bonus for "+ activity + " + 1");
                 break;
             case Activities.IN_VEHICLE_ACTIVITY:
-                scoreCounter *= 2;
+                scoreCounter =scoreCounter*3;
+                txtConfidence.setText("bonus for "+ activity + " x3");
                 break;
             case Activities.RUNNING_ACTIVITY:
                 scoreCounter = scoreCounter*2;
+                txtConfidence.setText("bonus for "+ activity + " x2");
                 break;
             case Activities.TILTING_ACTIVITY:
                 scoreCounter = (int) (scoreCounter * 1.2);
+                txtConfidence.setText("bonus for "+ activity + "+20%");
                 break;
             case Activities.WALKING_ACTIVITY:
-                scoreCounter = (int) (scoreCounter * 1.2);
+                scoreCounter = scoreCounter + (int)(scoreCounter * 0.3);
+                txtConfidence.setText("bonus for "+ activity + " +30%");
                 break;
             default:
                 break;
@@ -333,7 +343,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
     private void endGame() {
 
         // ************* TEMP
-        activitiesList.add(Activities.IN_VEHICLE_ACTIVITY);
+        //activitiesList.add(Activities.IN_VEHICLE_ACTIVITY);
         // ************* TEMP
        // System.out.println("ARRAY OF CONTEXT BY THE END OF THE GAME: " + activitiesList.toString());
         String context = sController.getContextsList(activitiesList).toString();

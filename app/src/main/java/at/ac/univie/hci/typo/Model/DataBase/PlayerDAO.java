@@ -84,6 +84,12 @@ public class PlayerDAO extends DBContentProvider implements IPlayerSchema, IPlay
     }
 
     @Override
+    public boolean deletePlayerByName(String name) {
+        mDb.delete(PLAYER_TABLE, COLUMN_NAME +" = ?", new String[]{ name });
+        return true;
+    }
+
+    @Override
     public boolean addPlayer(Player player) {
         player.setName(player.getName().toUpperCase());
         setContentValue(player);

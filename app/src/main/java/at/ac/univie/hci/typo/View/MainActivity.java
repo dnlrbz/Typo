@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
+import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
@@ -28,12 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Button toGame;
+    private TextView maxScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatisticsController sController = new StatisticsController();
         toGame = (Button) findViewById(R.id.playButton);
+        maxScore = (TextView) findViewById(R.id.textViewMaxScore);
+        maxScore.setText("HIGHSCORE: " + sController.getHighScore());
+
 
         //Database.mPlayerDAO.addPlayer(new Player("Vasya"));
         //Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Vasya"), 1, 89.4, 201, "P", "Bus", "22:00", 1, 100));

@@ -6,4 +6,5 @@
     <color name="menuButtonColor">@android:color/holo_blue_light</color>
     <color name="listItemColor">@android:color/black</color>
     <color name="menuTextItemColor">@android:color/white</color>
+    <color name="orange">@android:color/holo_orange_light</color>
 </resources>

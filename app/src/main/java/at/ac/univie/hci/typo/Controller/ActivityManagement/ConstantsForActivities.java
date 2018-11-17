@@ -5,6 +5,6 @@ public interface ConstantsForActivities {
 
     static final long DETECTION_INTERVAL_IN_MILLISECONDS = 3 * 1000;
 
-    public static final int CONFIDENCE = 60;
+    public static final int CONFIDENCE = 70;
 
 }

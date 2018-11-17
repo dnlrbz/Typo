@@ -45,7 +45,7 @@
         android:layout_alignStart="@+id/editTextWordToTypeIn"
         android:layout_below="@+id/textViewScore"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="35dp"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="18dp"
@@ -60,6 +60,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="-247dp"
         android:textAllCaps="true"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="14dp" />
 
     <TextView
@@ -114,8 +115,8 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/warning_before_game"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="20sp" />
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textViewTimer"

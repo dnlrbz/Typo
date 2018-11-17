@@ -38,7 +38,7 @@
         android:layout_marginTop="5dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/listViewScores"
@@ -48,7 +48,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Tap your name to see more statistics"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_light"
         android:textSize="20sp" />
@@ -64,5 +63,15 @@
         android:onClick="openMainActivity"
         android:paddingLeft="20dp"
         app:srcCompat="@drawable/back_filled" />
+
+    <ImageButton
+        android:id="@+id/imageButtonDelete"
+        android:layout_width="57dp"
+        android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </RelativeLayout>

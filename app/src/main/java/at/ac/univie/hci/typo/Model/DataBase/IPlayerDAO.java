@@ -27,4 +27,6 @@ public interface IPlayerDAO {
 
     boolean deleteAllPlayers();
 
+    public boolean deletePlayerByName(String name);
+
 }

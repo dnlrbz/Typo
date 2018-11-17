@@ -16,6 +16,7 @@ public class TransportAskingActivity extends AppCompatActivity {
     private Button car;
     private Button train;
     private Button ubahn;
+    private Button no;
     private String mostMissedKey;
     private Double accuracy;
     private String time;
@@ -53,6 +54,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         ubahn = (Button) findViewById(R.id.buttonUbahn);
         car = (Button) findViewById(R.id.buttonCar);
         train = (Button) findViewById(R.id.buttonTrain);
+        no = (Button) findViewById(R.id.buttonNo);
 
 
         tram.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +101,16 @@ public class TransportAskingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 context = context.replace(Activities.IN_VEHICLE_ACTIVITY, Activities.IN_BUS);
+                bundle.putString("context", context);
+                Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, "");
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);

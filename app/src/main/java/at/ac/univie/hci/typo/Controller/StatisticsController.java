@@ -69,14 +69,14 @@ public class StatisticsController {
         ArrayList<String> contextList= new ArrayList<String>();
         String result = "";
 
-        if (contextList.size()==0) {
-            contextList.add(Activities.IN_VEHICLE_ACTIVITY);
-        }
-
         for (String activity: activities) {
             if (!contextList.contains(activity)) {
                 contextList.add(activity);
             }
+        }
+
+        if (contextList.size()==0) {
+            contextList.add(Activities.IN_VEHICLE_ACTIVITY);
         }
 
         for (int i = 0; i< contextList.size(); i++) {
@@ -94,6 +94,8 @@ public class StatisticsController {
         return result;
 
     }
+
+
 
     /**
      *
