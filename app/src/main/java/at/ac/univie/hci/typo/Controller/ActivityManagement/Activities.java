@@ -5,6 +5,8 @@ public interface Activities {
     public String IN_BUS = "IN BUS";
     public String IN_UNDERGROUND = "IN UNDERGROUND";
     public String IN_TRAM = "IN TRAM";
+    public String IN_CAR = "CAR PASSENGER";
+    public String IN_TRAIN = "IN TRAIN";
     public String WALKING_ACTIVITY = "WALKING";
     public String RUNNING_ACTIVITY = "RUNNING";
     public String TILTING_ACTIVITY = "TILTING";

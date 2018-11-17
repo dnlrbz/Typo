@@ -108,7 +108,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         words= new Words();
         score = (TextView) findViewById(R.id.textViewScore);
         score.setText(String.valueOf("SCORE: "+scoreCounter));
-        wordsCounter = 0;
+        wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
         scoreCounter = 0;
         score.setVisibility(View.INVISIBLE);
 
@@ -231,18 +231,19 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
     public void getBonusPoints(String activity) {
         switch (activity) {
             case Activities.STILL_ACTIVITY:
+                scoreCounter = (int) (scoreCounter*1.1);
                 break;
             case Activities.IN_VEHICLE_ACTIVITY:
-                scoreCounter += (int) (scoreCounter * 0.5);
+                scoreCounter *= 2;
                 break;
             case Activities.RUNNING_ACTIVITY:
-                scoreCounter += (int) (scoreCounter * 1.0);
+                scoreCounter = scoreCounter*2;
                 break;
             case Activities.TILTING_ACTIVITY:
-                scoreCounter += (int) (scoreCounter * 0.1);
+                scoreCounter = (int) (scoreCounter * 1.2);
                 break;
             case Activities.WALKING_ACTIVITY:
-                scoreCounter += (int) (scoreCounter * 0.3);
+                scoreCounter = (int) (scoreCounter * 1.2);
                 break;
             default:
                 break;
@@ -330,8 +331,13 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      * End a game and compute and get all Statistics
      */
     private void endGame() {
-        System.out.println("ARRAY OF CONTEXT BY THE END OF THE GAME: " + activitiesList.toString());
-        String context = sController.getContextOfAGame(activitiesList);
+
+        // ************* TEMP
+        activitiesList.add(Activities.IN_VEHICLE_ACTIVITY);
+        // ************* TEMP
+       // System.out.println("ARRAY OF CONTEXT BY THE END OF THE GAME: " + activitiesList.toString());
+        String context = sController.getContextsList(activitiesList).toString();
+        System.out.println("CONTEXTS FOR VIEW: "+context);
         Double accuracy = sController.computeAccuracy(correctWords, incorrectWords);
         String time = sController.getTimeOfTheGame();
         int score = scoreCounter;
@@ -345,17 +351,33 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         bundle.putString("time", time);
         bundle.putInt("score", score);
         bundle.putInt("keysPerMinute", keysPerMinute);
-
-        if (context.equalsIgnoreCase(Activities.IN_VEHICLE_ACTIVITY)) {
-            //TODO new activity with buttons with different transports and save stats there
-            Intent otherIntent = new Intent(GameActivity.this, TransportAskingActivity.class);
-            intent.putExtras(bundle);
-            startActivity(otherIntent);
-        }
-
         bundle.putString("context", context);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if (sController.getContextsList(activitiesList).toLowerCase().contains(Activities.IN_VEHICLE_ACTIVITY.toLowerCase())) {
+            System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
+            /*
+
+            Intent otherIntent = new Intent(GameActivity.this, TransportAskingActivity.class);
+            Bundle bundle1 = new Bundle();
+            bundle1.putString("mostMissedKey", mostMissedKey);
+            bundle1.putDouble("accuracy", accuracy);
+            bundle1.putString("time", time);
+            bundle1.putInt("score", score);
+            bundle1.putInt("keysPerMinute", keysPerMinute);
+
+            intent.putExtras(bundle1);
+            */
+            System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
+            intent = new Intent(GameActivity.this, TransportAskingActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            //startActivity(otherIntent);
+
+        } else {
+
+
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
 
     }
 

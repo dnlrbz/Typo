@@ -33,7 +33,7 @@ public interface WordsInterface {
             "near\n" + "build\n" + "self\n" + "earth\n" + "father\n" + "head\n" + "stand\n" + "own\n" + "page\n" + "should\n" + "country\n" +
             "found\n" + "answer\n" + "school\n" + "grow\n" + "study\n" + "still\n" + "learn\n" + "plant\n" + "cover\n" + "food\n" +
             "sun\n" + "four\n" + "between\n" + "state\n" + "keep\n" + "eye\n" + "never\n" + "last\n" + "let\n" + "thought\n" +
-            "city\n" + "tree\n" + "cross\n" + "farm\n" + "hard\n" + "start\n" + "might\n" + "story\n" + "saw\n" + "far\n" + "sea\n" + "draw\n" + "left\n" + "late\n" + "run\n" + "don't\n" + "while\n" +
+            "city\n" + "tree\n" + "cross\n" + "farm\n" + "hard\n" + "start\n" + "might\n" + "story\n" + "saw\n" + "far\n" + "sea\n" + "draw\n" + "left\n" + "late\n" + "run\n" + "dont\n" + "while\n" +
             "press\n" + "close\n" + "night\n" + "real\n" + "life\n" + "few\n" + "north\n" + "open\n" + "seem\n" +
             "together\n" + "next\n" + "white\n" + "children\n" + "begin\n" + "got\n" + "walk\n" + "example\n" + "ease\n" +
             "paper\n" + "group\n" + "always\n" + "music\n" + "those\n" + "both\n" + "mark\n" + "often\n" + "letter\n" + "until\n" +
@@ -86,7 +86,7 @@ public interface WordsInterface {
             "save\n" + "control\n" + "decimal\n" + "gentle\n" + "woman\n" + "captain\n" + "practice\n" + "separate\n" + "difficult\n" + "doctor\n" + "please\n" +
             "protect\n" + "noon\n" + "whose\n" + "locate\n" + "ring\n" + "character\n" + "insect\n" + "caught\n" + "period\n" + "indicate\n" + "radio\n" +
             "spoke\n" + "atom\n" + "human\n" + "history\n" + "effect\n" + "electric\n" + "expect\n" + "crop\n" + "modern\n" + "element\n" + "hit\n" + "student\n" +
-            "corner\n" + "party\n" + "supply\n" + "bone\n" + "rail\n" + "imagine\n" + "provide\n" + "agree\n" + "thus\n" + "capital\n" + "won't\n" + "chair\n" + "danger\n" + "fruit\n" +
+            "corner\n" + "party\n" + "supply\n" + "bone\n" + "rail\n" + "imagine\n" + "provide\n" + "agree\n" + "thus\n" + "capital\n" + "wont\n" + "chair\n" + "danger\n" + "fruit\n" +
             "rich\n" + "thick\n" + "soldier\n" + "process\n" + "operate\n" + "guess\n" + "necessary\n" + "sharp\n" + "wing\n" + "create\n" + "neighbor\n" + "wash\n" +
             "bat\n" + "rather\n" + "crowd\n" + "corn\n" + "compare\n" + "poem\n" + "string\n" + "bell\n" + "depend\n" + "meat\n" + "rub\n" + "tube\n" + "famous\n" +
             "dollar\n" + "stream\n" + "fear\n" + "sight\n" + "thin\n" + "triangle\n" + "planet\n" + "hurry\n" + "chief\n" + "colony\n" + "clock\n" +

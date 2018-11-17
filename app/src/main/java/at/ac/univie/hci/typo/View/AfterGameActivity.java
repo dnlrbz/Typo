@@ -5,9 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
@@ -27,6 +32,9 @@ public class AfterGameActivity extends AppCompatActivity {
     private int score;
     private int keysPerMinute;
     private String context;
+    private TextView endScoreTextView;
+    private int statsId;
+
 
 
     @Override
@@ -35,20 +43,6 @@ public class AfterGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_after_game);
         initializeVaribles();
 
-
-        namesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*
-                Intent intent = new Intent(view.getContext(), StatisticsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("playerName", scoreList.get(position).getPlayer().getName());
-                intent.putExtras(bundle);
-                startActivity(intent);
-                */
-                //TODO save stats for player in the list
-            }
-        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,11 +86,34 @@ public class AfterGameActivity extends AppCompatActivity {
         score = bundle.getInt("score");
         keysPerMinute = bundle.getInt("keysPerMinute");
         context = bundle.getString("context");
+        endScoreTextView = (TextView) findViewById(R.id.textViewGame2);
+        endScoreTextView.setText("score: " + score);
+        final ArrayList<String> playerNames = new ArrayList<String>();
+        for (Player player: Database.mPlayerDAO.getAllPlayers()){
+            playerNames.add(player.getName());
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                R.layout.aftergame_name_listitem, R.id.textViewNameToChoose,
+                playerNames);
 
+        namesListView.setAdapter(arrayAdapter);
+
+        namesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                playerName = playerNames.get(position);
+                System.out.println(playerName + "SELECTED PLAYER FROM LIST");
+                int gameCounter = sController.getGameCounter(new Player(playerName));
+                statsId = Database.mGameStatsDAO.getAllGameStatistics().size();
+                GameStatistics gameStatistics = new GameStatistics(new Player(playerName), gameCounter,
+                        accuracy, keysPerMinute, mostMissedKey, context, time, statsId, score);
+                Database.mGameStatsDAO.addGameStatistics(gameStatistics);
+                Intent intent = new Intent(AfterGameActivity.this, ScoresActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
-    private void saveStatsForPlayerName() {
-        //TODO function for saving statistics
-    }
 }

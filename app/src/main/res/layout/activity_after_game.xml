@@ -2,28 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.AfterGameActivity">
 
     <EditText
         android:id="@+id/editTextNameOfPlayer"
-        android:layout_width="237dp"
-        android:layout_height="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="103dp"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:layout_alignTop="@+id/_namesList"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="240dp"
         android:cursorVisible="true"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical|center"
+        android:hint="your name"
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="25sp"
-        android:textStyle="bold"
-        tools:cursorVisible="false" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewGame2"
@@ -31,12 +31,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="11dp"
         android:clickable="true"
         android:fontFamily="sans-serif-smallcaps"
         android:paddingBottom="5dp"
         android:paddingTop="0dp"
-        android:text="YOUR NAME"
         android:textAlignment="center"
         android:textColor="@color/menuButtonColor"
         android:textSize="45sp"
@@ -45,37 +44,21 @@
     <Button
         android:id="@+id/saveButton"
         android:layout_width="134dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_height="51dp"
+        android:layout_below="@+id/editTextNameOfPlayer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="192dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
         android:text="SAVE"
         android:textColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/textViewHint"
-        android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_above="@+id/_namesList"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:layout_marginTop="262dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="or select"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="15sp" />
-
     <ListView
         android:id="@+id/_namesList"
         android:layout_width="272dp"
-        android:layout_height="333dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/textViewGame2"
+        android:layout_height="220dp"
+        android:layout_below="@+id/textViewGame2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp"
-        android:layout_marginTop="292dp"
-        android:clickable="true" />
+        android:layout_marginTop="10dp"
+        android:textAlignment="center" />
+
 </RelativeLayout>

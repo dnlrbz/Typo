@@ -64,6 +64,37 @@ public class StatisticsController {
         return timeOfGame;
     }
 
+
+    public String getContextsList(ArrayList<String> activities) {
+        ArrayList<String> contextList= new ArrayList<String>();
+        String result = "";
+
+        if (contextList.size()==0) {
+            contextList.add(Activities.IN_VEHICLE_ACTIVITY);
+        }
+
+        for (String activity: activities) {
+            if (!contextList.contains(activity)) {
+                contextList.add(activity);
+            }
+        }
+
+        for (int i = 0; i< contextList.size(); i++) {
+            if (i == contextList.size()-1) {
+                result += contextList.get(i);
+            }
+            else {
+                result += contextList.get(i) + "\n";
+            }
+        }
+
+
+
+
+        return result;
+
+    }
+
     /**
      *
      * @param activities
@@ -76,6 +107,11 @@ public class StatisticsController {
         if (activities.size() == 0) {
             return Activities.STILL_ACTIVITY;
         }
+        for (String activity: activities) {
+            if (activity.equalsIgnoreCase(Activities.IN_VEHICLE_ACTIVITY)) {
+                return Activities.IN_VEHICLE_ACTIVITY;
+            }
+        }
 
         int count = 1, tempCount;
         String popular = activities.get(0);
@@ -83,9 +119,7 @@ public class StatisticsController {
         for (int i = 0; i < (activities.size() - 1); i++)
         {
             temp = activities.get(i);
-            if (temp.equalsIgnoreCase(Activities.IN_VEHICLE_ACTIVITY)) {
-                return Activities.IN_VEHICLE_ACTIVITY;
-            }
+
             tempCount = 0;
             for (int j = 1; j < activities.size(); j++)
             {

@@ -11,8 +11,8 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="280dp"
-        android:layout_height="45dp"
-        android:layout_alignParentStart="true"
+        android:layout_height="123dp"
+        android:layout_alignParentStart="false"
         android:layout_below="@+id/textView4"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
@@ -132,32 +132,31 @@
     <TextView
         android:id="@+id/textViewContext"
         android:layout_width="132dp"
-        android:layout_height="45dp"
+        android:layout_height="124dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/textView6"
-        android:textColor="@color/listItemColor"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:paddingBottom="0dp"
         android:paddingTop="0dp"
         android:text="TextView"
         android:textAlignment="center"
+        android:textColor="@color/listItemColor"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView70"
         android:layout_width="280dp"
         android:layout_height="45dp"
         android:layout_alignParentStart="true"
-        android:textColor="@color/listItemColor"
+
         android:layout_below="@+id/textView6"
-        android:layout_marginTop="0dp"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="10dp"
         android:text="most missed key"
-
+        android:textColor="@color/listItemColor"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -166,12 +165,12 @@
         android:layout_width="132dp"
         android:layout_height="45dp"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView6"
-        android:textColor="@color/listItemColor"
+        android:layout_alignTop="@+id/textView70"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:text="TextView"
         android:textAlignment="center"
+        android:textColor="@color/listItemColor"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -179,16 +178,12 @@
         android:id="@+id/textView10"
         android:layout_width="280dp"
         android:layout_height="45dp"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentStart="true"
-        android:textColor="@color/listItemColor"
-        android:layout_below="@+id/textView7"
-        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/textView70"
         android:fontFamily="sans-serif-smallcaps"
         android:padding="10dp"
         android:text="Time of the game"
-        android:textAlignment="viewStart"
+        android:textColor="@color/listItemColor"
         android:textSize="20sp" />
 
     <TextView
@@ -196,14 +191,13 @@
         android:layout_width="132dp"
         android:layout_height="45dp"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/listItemColor"
-        android:layout_below="@+id/textView7"
-        android:layout_marginTop="0dp"
+        android:layout_below="@+id/textView70"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="0dp"
         android:text="TextView"
         android:textAlignment="center"
+        android:textColor="@color/listItemColor"
         android:textSize="20sp" />
 
 </RelativeLayout>

@@ -14,45 +14,45 @@
         android:layout_centerInParent="false"
         android:layout_centerVertical="false"
         android:fontFamily="sans-serif-smallcaps"
-        android:textColor="@color/listItemColor"
-        android:padding="10dp"
         android:gravity="center_vertical"
+        android:padding="10dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textColor="@color/listItemColor"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewName"
-        android:gravity="center_vertical"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textViewNumber"
-        android:textColor="@color/listItemColor"
         android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
         android:padding="10dp"
         android:text="TextView"
+        android:textColor="@color/listItemColor"
 
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewScore"
         android:layout_width="115dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_toEndOf="@+id/textViewName"
-        android:textColor="@color/listItemColor"
-        android:gravity="center_vertical"
         android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
         android:paddingBottom="10dp"
         android:paddingLeft="0dp"
         android:paddingTop="10dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textColor="@color/listItemColor"
+        android:textSize="25sp"
         android:textStyle="bold|italic" />
 
 </RelativeLayout>

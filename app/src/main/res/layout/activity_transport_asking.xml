@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.TransportAskingActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textViewTransport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/listViewScores"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:paddingBottom="5dp"
+        android:paddingTop="0dp"
+        android:text="HAVE YOU BEEN IN TRANSPORT?"
+        android:textAlignment="center"
+        android:textColor="@color/menuButtonColor"
+        android:textSize="45sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonBus"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textViewTransport"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="bus"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonTrain"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/buttonBus"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="train"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonTram"
+        android:layout_width="175dp"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignTop="@+id/buttonTrain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="tram"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonCar"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignTop="@+id/buttonTram"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="car passenger"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonUbahn"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignTop="@+id/buttonCar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="u-bahn"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>
