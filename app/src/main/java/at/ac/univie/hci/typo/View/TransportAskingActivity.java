@@ -113,7 +113,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, "");
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, ConstantsForActivities.STILL_ACTIVITY);
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);
