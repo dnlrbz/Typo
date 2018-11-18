@@ -31,22 +31,19 @@
     <ListView
         android:id="@+id/listViewScores"
         android:layout_width="match_parent"
-        android:layout_height="495dp"
+        android:layout_height="533dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="57dp"
+        android:layout_marginBottom="3dp"
         android:layout_marginTop="5dp" />
 
     <TextView
         android:id="@+id/textViewHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/listViewScores"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="false"
+        android:layout_above="@+id/listViewScores"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="-5dp"
         android:fontFamily="sans-serif-smallcaps"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_light"

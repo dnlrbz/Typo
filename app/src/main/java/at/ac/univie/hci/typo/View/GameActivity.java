@@ -7,11 +7,15 @@ import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -64,6 +68,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         private TextView timerTextView;
         private WordsManager wordsManager;
         private ImageButton backButton;
+        private TextView hintSpace;
 
 
     @Override
@@ -104,6 +109,9 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         backButton = (ImageButton) findViewById(R.id.buttonBack2);
         sController = new StatisticsController();
         wordsManager = new WordsManager();
+        hintSpace = (TextView) findViewById(R.id.textViewSpaceHint);
+        hintSpace.setVisibility(View.INVISIBLE);
+        hintSpace.setText("hit space for next word");
         //Two arraylists to compare and compute statistics in StatisticsManager
         correctWords = new ArrayList<String>();
         incorrectWords = new ArrayList<String>();
@@ -184,32 +192,32 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
             switch (type) {
                 case DetectedActivity.IN_VEHICLE: {
 
-                    label = Activities.IN_VEHICLE_ACTIVITY;
+                    label = ConstantsForActivities.IN_VEHICLE_ACTIVITY;
                     break;
                 }
                 case DetectedActivity.ON_BICYCLE: {
-                    label = Activities.ON_BICYCLE_ACTIVITY;
+                    label = ConstantsForActivities.ON_BICYCLE_ACTIVITY;
                     break;
                 }
                 case DetectedActivity.RUNNING: {
-                    label = Activities.RUNNING_ACTIVITY;
+                    label = ConstantsForActivities.RUNNING_ACTIVITY;
 
                     break;
                 }
                 case DetectedActivity.STILL: {
 
-                    label = Activities.STILL_ACTIVITY;
+                    label = ConstantsForActivities.STILL_ACTIVITY;
                     break;
                 }
                 case DetectedActivity.TILTING: {
 
-                    label = Activities.TILTING_ACTIVITY;
+                    label = ConstantsForActivities.TILTING_ACTIVITY;
 
                     break;
                 }
                 case DetectedActivity.WALKING: {
 
-                    label = Activities.WALKING_ACTIVITY;
+                    label = ConstantsForActivities.WALKING_ACTIVITY;
 
                     break;
                 }
@@ -235,23 +243,23 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
     public void getBonusPoints(String activity) {
 
         switch (activity) {
-            case Activities.STILL_ACTIVITY:
+            case ConstantsForActivities.STILL_ACTIVITY:
                 scoreCounter =  scoreCounter + 1;
                 txtConfidence.setText("bonus for "+ activity + " + 1");
                 break;
-            case Activities.IN_VEHICLE_ACTIVITY:
+            case ConstantsForActivities.IN_VEHICLE_ACTIVITY:
                 scoreCounter =scoreCounter*3;
                 txtConfidence.setText("bonus for "+ activity + " x3");
                 break;
-            case Activities.RUNNING_ACTIVITY:
+            case ConstantsForActivities.RUNNING_ACTIVITY:
                 scoreCounter = scoreCounter*2;
                 txtConfidence.setText("bonus for "+ activity + " x2");
                 break;
-            case Activities.TILTING_ACTIVITY:
+            case ConstantsForActivities.TILTING_ACTIVITY:
                 scoreCounter = (int) (scoreCounter * 1.2);
                 txtConfidence.setText("bonus for "+ activity + "+20%");
                 break;
-            case Activities.WALKING_ACTIVITY:
+            case ConstantsForActivities.WALKING_ACTIVITY:
                 scoreCounter = scoreCounter + (int)(scoreCounter * 0.3);
                 txtConfidence.setText("bonus for "+ activity + " +30%");
                 break;
@@ -314,28 +322,57 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      */
     @Override
     public void afterTextChanged(Editable typedWord) {
+
         //Ignoring backspaces
-        String typedIn = typedWord.toString().replaceAll("\\s+","");
-        String initialWord = gameWord.getText().toString();
-        if (typedIn.length() == initialWord.length()) {
-            sController.checkMissedKeys(initialWord, typedIn);
-            wordToTypeIn.setText("");
-            correctWords.add(initialWord);
-            incorrectWords.add(typedIn);
-            if (typedIn.equalsIgnoreCase(initialWord)) {
+            String typedIn = typedWord.toString(); //.replaceAll("\\s+", "");
+            String initialWord = gameWord.getText().toString();
 
-                scoreCounter++;
-                score.setText(String.valueOf("SCORE: "+scoreCounter));
+            if (typedWord.length()==initialWord.length() && scoreCounter < 3) {
+                hintSpace.setVisibility(View.VISIBLE);
             }
-            wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
-            gameWord.setText(words.getList().get(wordsCounter));
 
-            System.out.println("CORRECT WORDS LIST: " + correctWords.toString());
-            System.out.println("INCORRECT WORDS: " + incorrectWords.toString());
-        }
+            // Setting keys color to green or red
+            if (typedIn.length() > 0 && typedIn.length()<= initialWord.length()) {
+                SpannableString ss = new SpannableString(initialWord);
+                ForegroundColorSpan fcsGreen = new ForegroundColorSpan(Color.GREEN);
+                ForegroundColorSpan fcsRed = new ForegroundColorSpan(Color.RED);
 
+                if (typedIn.charAt(typedIn.length() - 1) == initialWord.charAt(typedIn.length() - 1)) {
+                    ss.setSpan(fcsGreen, typedIn.length() - 1, typedIn.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                    gameWord.setText(ss);
+                } else if (!(typedIn.charAt(typedIn.length() - 1) == initialWord.charAt(typedIn.length() - 1))) {
+                    ss.setSpan(fcsRed, typedIn.length() - 1, typedIn.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                    gameWord.setText(ss);
+                }
+            }
+
+            if (typedIn.length() > initialWord.length() && typedIn.charAt(typedIn.length()-1)==' ') {
+                    hintSpace.setVisibility(View.INVISIBLE);
+                //cutting off all keys that are out of initialword size
+                    typedIn = typedIn.substring(0, initialWord.length());
+                    //cutting of all backspaces
+                    typedIn = typedIn.replaceAll("\\s+", "");
+                    sController.checkMissedKeys(initialWord, typedIn);
+                    wordToTypeIn.setText("");
+                    correctWords.add(initialWord);
+                    incorrectWords.add(typedIn);
+                    if (typedIn.equalsIgnoreCase(initialWord)) {
+
+                        scoreCounter++;
+                        score.setText(String.valueOf("SCORE: " + scoreCounter));
+                    }
+                    wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
+                    gameWord.setText(words.getList().get(wordsCounter));
+
+                    System.out.println("CORRECT WORDS LIST: " + correctWords.toString());
+                    System.out.println("INCORRECT WORDS: " + incorrectWords.toString());
+                }
+            //}
+        //}
 
     }
+
+
 
     /**
      * End a game and compute and get all Statistics
@@ -362,7 +399,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         bundle.putInt("score", score);
         bundle.putInt("keysPerMinute", keysPerMinute);
         bundle.putString("context", context);
-        if (sController.getContextsList(activitiesList).toLowerCase().contains(Activities.IN_VEHICLE_ACTIVITY.toLowerCase())) {
+        if (sController.getContextsList(activitiesList).toLowerCase().contains(ConstantsForActivities.IN_VEHICLE_ACTIVITY.toLowerCase())) {
             System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
             /*
 

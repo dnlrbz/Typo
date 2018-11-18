@@ -119,15 +119,15 @@
         android:textStyle="bold" />
 
     <View
+        android:id="@+id/divider"
         android:layout_width="200dp"
         android:layout_height="1dp"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="true"
-        android:textColor="@color/listItemColor"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
-        android:background="@android:color/darker_gray" />
+        android:textColor="@color/listItemColor" />
 
     <TextView
         android:id="@+id/textViewContext"

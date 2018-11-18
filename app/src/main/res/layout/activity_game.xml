@@ -134,4 +134,16 @@
         android:textSize="48sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textViewSpaceHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewWarning"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>

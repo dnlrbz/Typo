@@ -7,5 +7,15 @@
     <string name="button_start_game">start game!</string>
     <string name="warning_before_game">GET BONUS POINTS BY WALKING, RUNNING, TILTING OR TAKING TRANSPORT!</string>
     <string name="hint_to_tap_name">tap your name to see more statistics</string>
-    <string name="hint_to_delete_item">tap a name to delete</string>
+    <string name="hint_to_delete_item">tap a name to delete or press back button</string>
+    <string name="common_info">
+        This game is designed to improve your typing performace.\n\n
+        In the background it recognizes what are you doing during the game:\n
+        sitting, walking, tilting, running or using transport.\n\n
+
+        You have to type words as fast as you can.\n\n
+        You can challenge other players and get more points by moving yourself during the game.\n\n\n\n\n
+
+        Game was made by Daniil Rabizo.
+    </string>
 </resources>

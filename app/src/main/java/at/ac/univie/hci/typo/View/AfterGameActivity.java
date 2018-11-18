@@ -105,7 +105,7 @@ public class AfterGameActivity extends AppCompatActivity {
                 playerName = playerNames.get(position);
                 System.out.println(playerName + "SELECTED PLAYER FROM LIST");
                 int gameCounter = sController.getGameCounter(new Player(playerName));
-                statsId = Database.mGameStatsDAO.getAllGameStatistics().size();
+                statsId = sController.getLatestId();
                 GameStatistics gameStatistics = new GameStatistics(new Player(playerName), gameCounter,
                         accuracy, keysPerMinute, mostMissedKey, context, time, statsId, score);
                 Database.mGameStatsDAO.addGameStatistics(gameStatistics);

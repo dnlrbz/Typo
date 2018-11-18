@@ -26,6 +26,7 @@ public class StatisticsActivity extends AppCompatActivity {
     TextView textViewHeader;
     ImageButton deleteButton;
     GameStatsListAdapter statsListAdapter;
+    private TextView hint;
 
 
     @Override
@@ -35,6 +36,9 @@ public class StatisticsActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String playerName = bundle.getString("playerName");
         deleteButton = (ImageButton) findViewById(R.id.imageButtonDelete2);
+        hint = (TextView) findViewById(R.id.textViewHintdelete);
+        hint.setVisibility(View.INVISIBLE);
+
 
         StatisticsController sController = new StatisticsController();
         textViewHeader = (TextView) findViewById(R.id.textViewHead);
@@ -53,6 +57,7 @@ public class StatisticsActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hint.setVisibility(View.VISIBLE);
                 setDeleteListView();
             }
         });
@@ -73,7 +78,7 @@ public class StatisticsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // hint.setText(getResources().getString(R.string.hint_to_tap_name));
                // hint.setTextColor(getResources().getColor(R.color.orange));
-
+                hint.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -83,6 +88,7 @@ public class StatisticsActivity extends AppCompatActivity {
         listViewStatisctics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Database.mGameStatsDAO.deleteGameStatisticsById(statisticsList.get(position).getId());
                 statsListAdapter.remove(statisticsList.get(position));
                 statsListAdapter.notifyDataSetChanged();

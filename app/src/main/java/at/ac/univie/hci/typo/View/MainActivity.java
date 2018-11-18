@@ -61,5 +61,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, ScoresActivity.class));
     }
 
+    public void openAboutActivity(View view) {
+        startActivity(new Intent(this, AboutActivity.class));
+    }
+
 
 }

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
+import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
@@ -76,7 +77,7 @@ public class StatisticsController {
         }
 
         if (contextList.size()==0) {
-            contextList.add(Activities.IN_VEHICLE_ACTIVITY);
+            contextList.add(ConstantsForActivities.IN_VEHICLE_ACTIVITY);
         }
 
         for (int i = 0; i< contextList.size(); i++) {
@@ -95,6 +96,16 @@ public class StatisticsController {
 
     }
 
+    public int getLatestId() {
+        int id = 0;
+        for(GameStatistics gameStatistics: Database.mGameStatsDAO.getAllGameStatistics()) {
+            if (id < gameStatistics.getId()) {
+                id = gameStatistics.getId();
+            }
+        }
+        return id+1;
+    }
+
 
 
     /**
@@ -107,11 +118,11 @@ public class StatisticsController {
         assert activities.size() > 0 : "THERE IS NO ACTIVITIES!";
 
         if (activities.size() == 0) {
-            return Activities.STILL_ACTIVITY;
+            return ConstantsForActivities.STILL_ACTIVITY;
         }
         for (String activity: activities) {
-            if (activity.equalsIgnoreCase(Activities.IN_VEHICLE_ACTIVITY)) {
-                return Activities.IN_VEHICLE_ACTIVITY;
+            if (activity.equalsIgnoreCase(ConstantsForActivities.IN_VEHICLE_ACTIVITY)) {
+                return ConstantsForActivities.IN_VEHICLE_ACTIVITY;
             }
         }
 

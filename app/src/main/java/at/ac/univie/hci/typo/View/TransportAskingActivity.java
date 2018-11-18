@@ -1,12 +1,14 @@
 package at.ac.univie.hci.typo.View;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
+import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.R;
 
@@ -26,6 +28,7 @@ public class TransportAskingActivity extends AppCompatActivity {
     private String context;
     private StatisticsController sController;
     private Bundle bundle;
+
 
 
     @Override
@@ -60,7 +63,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         tram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, Activities.IN_TRAM);
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, ConstantsForActivities.IN_TRAM);
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);
@@ -70,7 +73,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, Activities.IN_CAR);
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, ConstantsForActivities.IN_CAR);
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);
@@ -80,7 +83,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         train.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, Activities.IN_TRAIN);
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, ConstantsForActivities.IN_TRAIN);
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);
@@ -90,7 +93,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         ubahn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, Activities.IN_UNDERGROUND);
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, ConstantsForActivities.IN_UNDERGROUND);
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);
@@ -100,7 +103,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, Activities.IN_BUS);
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, ConstantsForActivities.IN_BUS);
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);
@@ -110,7 +113,7 @@ public class TransportAskingActivity extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context = context.replace(Activities.IN_VEHICLE_ACTIVITY, "");
+                context = context.replace(ConstantsForActivities.IN_VEHICLE_ACTIVITY, "");
                 bundle.putString("context", context);
                 Intent intent = new Intent(TransportAskingActivity.this, AfterGameActivity.class);
                 intent.putExtras(bundle);

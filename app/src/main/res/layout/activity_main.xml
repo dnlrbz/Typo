@@ -78,9 +78,10 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
             android:background="@drawable/rounded_button"
-            android:textColor="@color/menuTextItemColor"
             android:fontFamily="sans-serif-smallcaps"
+            android:onClick="openAboutActivity"
             android:text="@string/about_button"
+            android:textColor="@color/menuTextItemColor"
             android:textSize="35sp"
             tools:layout_editor_absoluteX="145dp"
             tools:layout_editor_absoluteY="494dp" />
