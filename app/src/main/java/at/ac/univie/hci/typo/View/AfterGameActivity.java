@@ -48,7 +48,7 @@ public class AfterGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playerName = editTextName.getText().toString().replaceAll("\\s+","");
-                int id = Database.mGameStatsDAO.getAllGameStatistics().size();
+                int id = sController.getLatestId();
                 if (playerName.length() != 0) {
                     int gameCounter = sController.getGameCounter(new Player(playerName));
 

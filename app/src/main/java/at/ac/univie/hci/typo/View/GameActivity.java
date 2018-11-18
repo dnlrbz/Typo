@@ -313,7 +313,6 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
     }
 
     /**
@@ -322,54 +321,61 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      */
     @Override
     public void afterTextChanged(Editable typedWord) {
+        hintSpace.setVisibility(View.INVISIBLE);
+        String initialWord = gameWord.getText().toString();
+        String typedIn = "";
 
-        //Ignoring backspaces
-            String typedIn = typedWord.toString(); //.replaceAll("\\s+", "");
-            String initialWord = gameWord.getText().toString();
+        setColoringForKeys(initialWord, typedWord.toString().replaceAll("\\s+", ""));
 
-            if (typedWord.length()==initialWord.length() && scoreCounter < 3) {
+            //SHOW HINT TO PRESS SPACE if score is less then 4:
+            if (typedWord.toString().length() == initialWord.length() && scoreCounter < 4) {
                 hintSpace.setVisibility(View.VISIBLE);
             }
 
-            // Setting keys color to green or red
-            if (typedIn.length() > 0 && typedIn.length()<= initialWord.length()) {
-                SpannableString ss = new SpannableString(initialWord);
-                ForegroundColorSpan fcsGreen = new ForegroundColorSpan(Color.GREEN);
-                ForegroundColorSpan fcsRed = new ForegroundColorSpan(Color.RED);
+            if (typedWord.toString().contains(" ")) {
+                wordToTypeIn.setText("");
 
-                if (typedIn.charAt(typedIn.length() - 1) == initialWord.charAt(typedIn.length() - 1)) {
-                    ss.setSpan(fcsGreen, typedIn.length() - 1, typedIn.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-                    gameWord.setText(ss);
-                } else if (!(typedIn.charAt(typedIn.length() - 1) == initialWord.charAt(typedIn.length() - 1))) {
-                    ss.setSpan(fcsRed, typedIn.length() - 1, typedIn.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-                    gameWord.setText(ss);
-                }
-            }
 
-            if (typedIn.length() > initialWord.length() && typedIn.charAt(typedIn.length()-1)==' ') {
-                    hintSpace.setVisibility(View.INVISIBLE);
-                //cutting off all keys that are out of initialword size
-                    typedIn = typedIn.substring(0, initialWord.length());
-                    //cutting of all backspaces
-                    typedIn = typedIn.replaceAll("\\s+", "");
-                    sController.checkMissedKeys(initialWord, typedIn);
-                    wordToTypeIn.setText("");
-                    correctWords.add(initialWord);
-                    incorrectWords.add(typedIn);
+                if (typedWord.toString().replaceAll("\\s+", "").length() >= initialWord.length()) {
+                    // if word is complete then compare and increment score if needed
+                    typedIn = typedWord.toString().replaceAll("\\s+", "").
+                            substring(0, initialWord.length());
+
+                    System.out.println("CHECK TYPED IN AFtER TRANSFORMATION: " +typedIn);
                     if (typedIn.equalsIgnoreCase(initialWord)) {
-
+                        System.out.println("INCREMENTED SCORE");
                         scoreCounter++;
                         score.setText(String.valueOf("SCORE: " + scoreCounter));
                     }
-                    wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
-                    gameWord.setText(words.getList().get(wordsCounter));
+                    correctWords.add(initialWord);
+                    incorrectWords.add(typedIn);
+                    sController.checkMissedKeys(initialWord, typedIn);
 
-                    System.out.println("CORRECT WORDS LIST: " + correctWords.toString());
-                    System.out.println("INCORRECT WORDS: " + incorrectWords.toString());
                 }
-            //}
-        //}
 
+                wordsCounter = WordsManager.getRandomNumberInRange(0, 999);
+                gameWord.setText(words.getList().get(wordsCounter));
+
+            }
+
+
+    }
+
+    public void setColoringForKeys(String initialWord, String typedIn) {
+        if (typedIn.length() > 0 &&
+                typedIn.length()<= initialWord.length()) {
+            SpannableString ss = new SpannableString(initialWord);
+            ForegroundColorSpan fcsGreen = new ForegroundColorSpan(Color.GREEN);
+            ForegroundColorSpan fcsRed = new ForegroundColorSpan(Color.RED);
+
+            if (typedIn.charAt(typedIn.length() - 1) == initialWord.charAt(typedIn.length() - 1)) {
+                ss.setSpan(fcsGreen, typedIn.length() - 1, typedIn.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                gameWord.setText(ss);
+            } else if (!(typedIn.charAt(typedIn.length() - 1) == initialWord.charAt(typedIn.length() - 1))) {
+                ss.setSpan(fcsRed, typedIn.length() - 1, typedIn.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                gameWord.setText(ss);
+            }
+        }
     }
 
 
