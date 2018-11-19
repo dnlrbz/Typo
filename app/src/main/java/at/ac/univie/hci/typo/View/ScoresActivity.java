@@ -14,6 +14,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.Score;
@@ -42,6 +43,13 @@ public class ScoresActivity extends AppCompatActivity {
         hint.setText(R.string.hint_to_tap_name);
         hint.setTextColor(getResources().getColor(R.color.orange));
         scoreList = statisticsController.getScoresList();
+
+
+
+        Intent intent = new Intent(ScoresActivity.this, BackgroundActivityService.class);
+        stopService(intent);
+
+
 
         scoreListViewAdapter = new
                 ScoreListViewAdapter(this, R.layout.names_list_item, scoreList);

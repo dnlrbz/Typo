@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
+import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.R;
@@ -35,6 +36,13 @@ public class TransportAskingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport_asking);
+
+
+
+        Intent intent = new Intent(TransportAskingActivity.this, BackgroundActivityService.class);
+        stopService(intent);
+
+
 
         bundle = getIntent().getExtras();
         mostMissedKey = bundle.getString("mostMissedKey");

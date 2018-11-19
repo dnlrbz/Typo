@@ -207,7 +207,7 @@ public class StatisticsController {
 
             return mostMissedLetter.getName();
         }
-        return mostMissedLetter!=null? mostMissedLetter.getName() : "NOT EXIST";
+        return (mostMissedLetter!=null && max!=0) ? mostMissedLetter.getName() : "NOT EXIST";
     }
 
 

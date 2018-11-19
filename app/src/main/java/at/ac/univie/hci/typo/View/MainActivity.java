@@ -41,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         maxScore.setText("HIGHSCORE: " + sController.getHighScore());
 
 
+
+
+
+        Intent intent = new Intent(MainActivity.this, BackgroundActivityService.class);
+        stopService(intent);
+
+
+
+
+
         //Database.mPlayerDAO.addPlayer(new Player("Vasya"));
         //Database.mGameStatsDAO.addGameStatistics(new GameStatistics(new Player("Vasya"), 1, 89.4, 201, "P", "Bus", "22:00", 1, 100));
         System.out.println("**********" + Database.mGameStatsDAO.getAllGameStatistics().toString());
