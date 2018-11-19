@@ -1,24 +1,23 @@
 package at.ac.univie.hci.typo.View;
 
-import android.content.BroadcastReceiver;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.location.DetectedActivity;
-
-import java.util.ArrayList;
+import java.util.Calendar;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
-import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;
@@ -39,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
         toGame = (Button) findViewById(R.id.playButton);
         maxScore = (TextView) findViewById(R.id.textViewMaxScore);
         maxScore.setText("HIGHSCORE: " + sController.getHighScore());
-
-
-
 
 
         Intent intent = new Intent(MainActivity.this, BackgroundActivityService.class);

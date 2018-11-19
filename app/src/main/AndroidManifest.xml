@@ -30,6 +30,7 @@
         <activity android:name=".View.AfterGameActivity" />
         <activity android:name=".View.TransportAskingActivity" />
         <activity android:name=".View.AboutActivity"></activity>
+        <activity android:name=".preferences"></activity>
     </application>
 
 </manifest>

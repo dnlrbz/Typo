@@ -27,6 +27,7 @@ public class StatisticsActivity extends AppCompatActivity {
     ImageButton deleteButton;
     GameStatsListAdapter statsListAdapter;
     private TextView hint;
+    private boolean setToDelete;
 
 
     @Override
@@ -35,7 +36,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         Bundle bundle = getIntent().getExtras();
         String playerName = bundle.getString("playerName");
-        deleteButton = (ImageButton) findViewById(R.id.imageButtonDelete2);
+
         hint = (TextView) findViewById(R.id.textViewHintdelete);
         hint.setVisibility(View.INVISIBLE);
 
@@ -43,6 +44,25 @@ public class StatisticsActivity extends AppCompatActivity {
         StatisticsController sController = new StatisticsController();
         textViewHeader = (TextView) findViewById(R.id.textViewHead);
         textViewHeader.setText("STATISTICS\n" + playerName);
+        textViewHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (setToDelete) {
+                    hint.setVisibility(View.INVISIBLE);
+                    setNormalListView();
+                    setToDelete = false;
+                    return;
+                }
+                if (!setToDelete) {
+                    setToDelete = true;
+                    hint.setVisibility(View.VISIBLE);
+                    setDeleteListView();
+                    return;
+                }
+
+
+            }
+        });
 
         statisticsList = sController.getStatisticsListForPlayer(playerName);
 
@@ -54,13 +74,7 @@ public class StatisticsActivity extends AppCompatActivity {
         listViewStatisctics.setAdapter(statsListAdapter);
 
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hint.setVisibility(View.VISIBLE);
-                setDeleteListView();
-            }
-        });
+
 
 
 
@@ -78,7 +92,7 @@ public class StatisticsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // hint.setText(getResources().getString(R.string.hint_to_tap_name));
                // hint.setTextColor(getResources().getColor(R.color.orange));
-                hint.setVisibility(View.INVISIBLE);
+                //hint.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -92,7 +106,7 @@ public class StatisticsActivity extends AppCompatActivity {
                 Database.mGameStatsDAO.deleteGameStatisticsById(statisticsList.get(position).getId());
                 statsListAdapter.remove(statisticsList.get(position));
                 statsListAdapter.notifyDataSetChanged();
-                setNormalListView();
+                //setNormalListView();
             }
         });
     }

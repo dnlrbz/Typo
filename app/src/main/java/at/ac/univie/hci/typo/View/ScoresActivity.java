@@ -1,7 +1,11 @@
 package at.ac.univie.hci.typo.View;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +25,8 @@ import at.ac.univie.hci.typo.Model.Score;
 import at.ac.univie.hci.typo.R;
 import at.ac.univie.hci.typo.View.ListAdapters.ScoreListViewAdapter;
 
+import static at.ac.univie.hci.typo.Controller.MainApplication.CHANNEL_1_ID;
+
 public class ScoresActivity extends AppCompatActivity {
 
 
@@ -30,50 +36,66 @@ public class ScoresActivity extends AppCompatActivity {
     ImageButton deleteButton;
     ScoreListViewAdapter scoreListViewAdapter;
     TextView hint;
+    NotificationManagerCompat notificationManagerCompat;
+    String title;
+    String textMessage;
+    TextView game;
+    private boolean setToDelete;
 
+    @SuppressWarnings ( "deprecation" )
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID).
+                setSmallIcon(R.drawable.ic_time_reminder_play).
+                setContentTitle("Play at least 6 times today").
+                setContentText("While walking, running or in transport!").
+                setPriority(NotificationCompat.PRIORITY_HIGH).
+                setCategory(NotificationCompat.CATEGORY_ALARM).
+                build();
+
+
+        notificationManagerCompat.notify(1, notification);
+
+        game = (TextView) findViewById(R.id.textViewGame);
+        setToDelete = false;
+        game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (setToDelete) {
+                    hint.setText(getResources().getString(R.string.hint_to_tap_name));
+                    hint.setTextColor(getResources().getColor(R.color.orange));
+                    setNormalListView();
+                    setToDelete = false;
+                    return;
+                }
+                if (!setToDelete) {
+                    setToDelete = true;
+                    hint.setText(R.string.hint_to_delete_item);
+                    hint.setTextColor(Color.RED);
+                    setDeleteListView();
+                    return;
+                }
+
+
+            }
+        });
         StatisticsController statisticsController = new StatisticsController();
         buttonBack = (ImageButton) findViewById(R.id.buttonBack);
-        deleteButton = (ImageButton) findViewById(R.id.imageButtonDelete);
         hint = (TextView) findViewById(R.id.textViewHint);
         hint.setText(R.string.hint_to_tap_name);
         hint.setTextColor(getResources().getColor(R.color.orange));
         scoreList = statisticsController.getScoresList();
 
-
-
         Intent intent = new Intent(ScoresActivity.this, BackgroundActivityService.class);
         stopService(intent);
 
-
-
         scoreListViewAdapter = new
                 ScoreListViewAdapter(this, R.layout.names_list_item, scoreList);
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hint.setText(R.string.hint_to_delete_item);
-                hint.setTextColor(Color.RED);
-                setDeleteListView();
-            }
-        });
-
-
-
-
-
-
-
-
         listViewScores = (ListView) findViewById(R.id.listViewScores);
-
-
-
         listViewScores.setAdapter(scoreListViewAdapter);
 
         setNormalListView();
@@ -90,8 +112,11 @@ public class ScoresActivity extends AppCompatActivity {
         listViewScores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                hint.setText(getResources().getString(R.string.hint_to_tap_name));
-                hint.setTextColor(getResources().getColor(R.color.orange));
+
+                //hint.setText(getResources().getString(R.string.hint_to_tap_name));
+                //hint.setTextColor(getResources().getColor(R.color.orange));
+
+
                 Intent intent = new Intent(view.getContext(), StatisticsActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("playerName", scoreList.get(position).getPlayer().getName());
@@ -108,7 +133,7 @@ public class ScoresActivity extends AppCompatActivity {
                 Database.mPlayerDAO.deletePlayerByName(scoreList.get(position).getPlayer().getName());
                 scoreListViewAdapter.remove(scoreList.get(position));
                 scoreListViewAdapter.notifyDataSetChanged();
-                setNormalListView();
+                //setNormalListView();
             }
         });
     }

@@ -28,16 +28,6 @@
         android:textStyle="bold" />
 
     <ImageButton
-        android:id="@+id/imageButtonDelete2"
-        android:layout_width="57dp"
-        android:layout_height="32dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginTop="18dp"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
-
-    <ImageButton
         android:id="@+id/buttonBack"
         android:layout_width="57dp"
         android:layout_height="32dp"
