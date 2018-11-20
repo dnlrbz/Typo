@@ -39,10 +39,8 @@ public class MainActivity extends AppCompatActivity {
         maxScore = (TextView) findViewById(R.id.textViewMaxScore);
         maxScore.setText("HIGHSCORE: " + sController.getHighScore());
 
-
         Intent intent = new Intent(MainActivity.this, BackgroundActivityService.class);
         stopService(intent);
-
 
 
 

@@ -361,6 +361,11 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
+    /**
+     * Sets green for correct key and red for incorrect
+     * @param initialWord
+     * @param typedIn
+     */
     public void setColoringForKeys(String initialWord, String typedIn) {
         if (typedIn.length() > 0 &&
                 typedIn.length()<= initialWord.length()) {
@@ -407,33 +412,21 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         bundle.putString("context", context);
         if (sController.getContextsList(activitiesList).toLowerCase().contains(ConstantsForActivities.IN_VEHICLE_ACTIVITY.toLowerCase())) {
             System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
-            /*
-
-            Intent otherIntent = new Intent(GameActivity.this, TransportAskingActivity.class);
-            Bundle bundle1 = new Bundle();
-            bundle1.putString("mostMissedKey", mostMissedKey);
-            bundle1.putDouble("accuracy", accuracy);
-            bundle1.putString("time", time);
-            bundle1.putInt("score", score);
-            bundle1.putInt("keysPerMinute", keysPerMinute);
-
-            intent.putExtras(bundle1);
-            */
             System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
             intent = new Intent(GameActivity.this, TransportAskingActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
-            //startActivity(otherIntent);
-
         } else {
-
-
             intent.putExtras(bundle);
             startActivity(intent);
         }
 
     }
 
+    /**
+     * Method for back button
+     * @param view
+     */
     public void openMainActivityFromGame(View view) {
         stopTracking();
         startActivity(new Intent(this, MainActivity.class));

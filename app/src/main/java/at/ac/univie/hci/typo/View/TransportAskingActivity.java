@@ -57,7 +57,10 @@ public class TransportAskingActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Method for initializing Variables
+     * @param savedInstanceState
+     */
     private void initializeVaribles(Bundle savedInstanceState) {
         sController = new StatisticsController();
         tram = (Button) findViewById(R.id.buttonTram);

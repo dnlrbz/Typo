@@ -54,10 +54,19 @@ public class StatisticsController {
                 keysPerMinute, mostMissedKey, context, timeOfGame,gameCounter );
     }
 
+    /**
+     *
+     * @param player
+     * @return game counter for particular player
+     */
     public int getGameCounter(Player player) {
         return Database.mGameStatsDAO.getGameStatisticsByPlayerName(player.getName()).size()+1;
     }
 
+    /**
+     * Get current time at the end of the game
+     * @return current time as String
+     */
     public String getTimeOfTheGame() {
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("HH:mm");
@@ -65,7 +74,11 @@ public class StatisticsController {
         return timeOfGame;
     }
 
-
+    /**
+     * Get all contexts and activities during the game
+     * @param activities
+     * @return  all contexts and activities
+     */
     public String getContextsList(ArrayList<String> activities) {
         ArrayList<String> contextList= new ArrayList<String>();
         String result = "";
@@ -96,6 +109,10 @@ public class StatisticsController {
 
     }
 
+    /**
+     * Get id to create and save GameStatistics (needs id)
+     * @return biggest id from all games
+     */
     public int getLatestId() {
         int id = 0;
         for(GameStatistics gameStatistics: Database.mGameStatsDAO.getAllGameStatistics()) {
@@ -356,6 +373,11 @@ public class StatisticsController {
         return statsList;
     }
 
+    /**
+     * Method checks if player exists in the Database
+     * @param player
+     * @return boolean, if player already exists
+     */
     public boolean playerExists(Player player) {
         boolean exists = false;
         for (Player player1: Database.mPlayerDAO.getAllPlayers()) {
@@ -366,6 +388,10 @@ public class StatisticsController {
         return exists;
     }
 
+    /**
+     * Method for rounding doubles to one comma-point
+     * @return decimal format
+     */
     public static DecimalFormat getDecimalFormat() {
         DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
         dfs.setDecimalSeparator('.');

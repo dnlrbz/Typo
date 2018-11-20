@@ -14,7 +14,7 @@ public interface IPlayerDAO {
 
     /**
      * Method to fetch all players from the database.
-     * @return
+     * @return all players in arraylist
      */
     ArrayList<Player> getAllPlayers();
 
