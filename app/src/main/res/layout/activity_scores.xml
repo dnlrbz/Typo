@@ -19,10 +19,11 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:fontFamily="sans-serif-smallcaps"
         android:paddingBottom="5dp"
         android:paddingTop="0dp"
-        android:text="HIGHSCORES"
+        android:text="@string/highscores"
         android:textAlignment="center"
         android:textColor="@color/menuButtonColor"
         android:textSize="45sp"
@@ -58,7 +59,8 @@
         android:layout_toStartOf="@+id/textViewGame"
         android:background="@android:color/transparent"
         android:onClick="openMainActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
         app:srcCompat="@drawable/back_filled" />
 
 </RelativeLayout>

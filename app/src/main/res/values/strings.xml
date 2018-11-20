@@ -18,4 +18,25 @@
 
         Game was made by Daniil Rabizo.
     </string>
+    <string name="about">ABOUT</string>
+    <string name="content_description_back_button">back button</string>
+    <string name="your_name">your name</string>
+    <string name="save_button">SAVE</string>
+    <string name="empty_hint">_</string>
+    <string name="conten_description_logo_image">logo image</string>
+    <string name="highscores">HIGHSCORES</string>
+    <string name="choose_item_to_delete_or_press_back">choose item to delete or press back</string>
+    <string name="HAVE_YOU_BEEN_IN_TRANSPORT">HAVE YOU BEEN IN TRANSPORT?</string>
+    <string name="bus">bus</string>
+    <string name="car_passenger">car passenger</string>
+    <string name="train">train</string>
+    <string name="tram">tram</string>
+    <string name="u_bahn">u-bahn</string>
+    <string name="no">no</string>
+    <string name="context">context</string>
+    <string name="keys_per_minute">keys per minute</string>
+    <string name="accuracy">accuracy</string>
+    <string name="game_number">game number</string>
+    <string name="most_missed_key">most missed key</string>
+    <string name="time_of_the_game">time of the game</string>
 </resources>

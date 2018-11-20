@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import at.ac.univie.hci.typo.Model.GameStatistics;
 import at.ac.univie.hci.typo.Model.Player;
@@ -91,7 +92,7 @@ public class GameStatsDAO extends DBContentProvider implements IGameStatisticsSc
 
     @Override
     public boolean deleteGameStatisticsByPlayerName(String playerName) {
-        mDb.delete(GAME_STATISTICS_TABLE, COLUMN_PLAYER_NAME +" = ?", new String[]{ playerName.toUpperCase() });
+        mDb.delete(GAME_STATISTICS_TABLE, COLUMN_PLAYER_NAME +" = ?", new String[]{ playerName.toUpperCase(Locale.getDefault()) });
         return true;
     }
 

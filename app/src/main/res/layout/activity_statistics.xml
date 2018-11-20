@@ -13,12 +13,13 @@
         android:layout_height="119dp"
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/listViewScores"
+
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:fontFamily="sans-serif-smallcaps"
         android:paddingBottom="5dp"
         android:paddingTop="0dp"
@@ -28,15 +29,16 @@
         android:textStyle="bold" />
 
     <ImageButton
+        android:contentDescription="@string/content_description_back_button"
         android:id="@+id/buttonBack"
         android:layout_width="57dp"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:layout_toStartOf="@+id/textViewGame"
         android:background="@android:color/transparent"
         android:onClick="openScoresActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
         app:srcCompat="@drawable/back_filled" />
 
     <ListView
@@ -45,8 +47,8 @@
         android:layout_height="500dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="5dp"/>
+        android:divider="@android:color/black"
+        android:dividerHeight="2dp"/>
 
     <TextView
         android:id="@+id/textViewHintdelete"
@@ -55,7 +57,7 @@
         android:layout_above="@+id/listViewStats"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="choose item to delete or press back"
+        android:text="@string/choose_item_to_delete_or_press_back"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20sp" />
 

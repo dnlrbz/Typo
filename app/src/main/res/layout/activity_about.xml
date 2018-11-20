@@ -13,31 +13,33 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/listViewScores"
+
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="8dp"
-        android:clickable="true"
+
         android:fontFamily="sans-serif-smallcaps"
         android:paddingBottom="5dp"
         android:paddingTop="0dp"
-        android:text="ABOUT"
+        android:text='@string/about'
         android:textAlignment="center"
         android:textColor="@color/menuButtonColor"
         android:textSize="45sp"
         android:textStyle="bold" />
 
     <ImageButton
+        android:contentDescription="@string/content_description_back_button"
         android:id="@+id/buttonBack3"
         android:layout_width="57dp"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:layout_toStartOf="@+id/textViewGame"
+
         android:background="@android:color/transparent"
         android:onClick="openMainActivity"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
         app:srcCompat="@drawable/back_filled" />
 
     <TextView

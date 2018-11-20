@@ -28,6 +28,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random.*;
 
 import com.google.android.gms.location.DetectedActivity;
@@ -410,7 +411,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         bundle.putInt("score", score);
         bundle.putInt("keysPerMinute", keysPerMinute);
         bundle.putString("context", context);
-        if (sController.getContextsList(activitiesList).toLowerCase().contains(ConstantsForActivities.IN_VEHICLE_ACTIVITY.toLowerCase())) {
+        if (sController.getContextsList(activitiesList).toLowerCase(Locale.getDefault()).contains(ConstantsForActivities.IN_VEHICLE_ACTIVITY.toLowerCase(Locale.getDefault()))) {
             System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
             System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
             intent = new Intent(GameActivity.this, TransportAskingActivity.class);

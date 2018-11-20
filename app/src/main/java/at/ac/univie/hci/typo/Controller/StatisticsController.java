@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
@@ -69,9 +70,8 @@ public class StatisticsController {
      */
     public String getTimeOfTheGame() {
         Date date = new Date();
-        DateFormat format = new SimpleDateFormat("HH:mm");
-        String timeOfGame =  format.format(date);
-        return timeOfGame;
+        DateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return format.format(date);
     }
 
     /**
@@ -132,7 +132,7 @@ public class StatisticsController {
      */
     public String getContextOfAGame(ArrayList<String> activities) {
 
-        assert activities.size() > 0 : "THERE IS NO ACTIVITIES!";
+
 
         if (activities.size() == 0) {
             return ConstantsForActivities.STILL_ACTIVITY;
@@ -182,7 +182,7 @@ public class StatisticsController {
             String correctWord = correctWordsArrayList.get(i);
             allCharsInWordsInArrayCounter = allCharsInWordsInArrayCounter + correctWord.length();
 
-            assert correctWord.length()==inCorrectWord.length() : "WORDS LENGTH IS NOT EQUAL EXCEPTION";
+           // assert correctWord.length()==inCorrectWord.length() : "WORDS LENGTH IS NOT EQUAL EXCEPTION";
 
             for (int j = 0; j < correctWord.length(); j++) {
                 if(correctWord.charAt(j) == inCorrectWord.charAt(j)) {
@@ -270,7 +270,7 @@ public class StatisticsController {
      * @param incorrect list of incorrect words
      */
     public void checkMissedKeys(String correct, String incorrect) {
-        assert correct.length()==incorrect.length() : new IllegalArgumentException("Strings have different length");
+       // assert correct.length()==incorrect.length() : new IllegalArgumentException("Strings have different length");
         ArrayList<String> mustBeList = wordsManager.getArrayListOfStringsFromWord(correct);
         ArrayList<String> haveList = wordsManager.getArrayListOfStringsFromWord(incorrect);
 
@@ -298,7 +298,7 @@ public class StatisticsController {
                 }
             }
         } catch (NullPointerException nl) {
-            System.out.println("Letter " + l.toUpperCase() + " NOT FOUND");
+            System.out.println("Letter " + l.toUpperCase(Locale.getDefault()) + " NOT FOUND");
         }
         return null;
     }

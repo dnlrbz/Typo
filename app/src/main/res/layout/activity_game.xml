@@ -8,18 +8,21 @@
     tools:context=".View.GameActivity">
 
     <ImageButton
+        android:contentDescription="@string/content_description_back_button"
         android:id="@+id/buttonBack2"
         android:layout_width="57dp"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:layout_toStartOf="@+id/textViewGame"
+
         android:background="@android:color/transparent"
         android:onClick="openMainActivityFromGame"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
         app:srcCompat="@drawable/back_filled" />
 
     <EditText
+        android:hint="@string/empty_hint"
         android:id="@+id/editTextWordToTypeIn"
         android:layout_width="237dp"
         android:layout_height="80dp"
@@ -41,14 +44,14 @@
         android:id="@+id/txt_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignStart="@+id/editTextWordToTypeIn"
         android:layout_below="@+id/textViewScore"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -61,7 +64,7 @@
         android:layout_marginBottom="-247dp"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="14dp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textViewWord"
@@ -74,7 +77,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:includeFontPadding="false"
         android:letterSpacing="0.1"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="40sp"
@@ -88,7 +91,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="35dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="TextView"
+
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="30sp" />
 
@@ -125,10 +128,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="0dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="48sp"

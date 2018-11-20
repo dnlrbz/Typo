@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import at.ac.univie.hci.typo.Model.DataBase.DBContentProvider;
 import at.ac.univie.hci.typo.Model.DataBase.IPlayerDAO;
@@ -49,7 +50,7 @@ public class PlayerDAO extends DBContentProvider implements IPlayerSchema, IPlay
 
     @Override
     public Player getPlayerByName(String playerName) {
-        final String selectionArgs[] = { String.valueOf(playerName.toUpperCase()) };
+        final String selectionArgs[] = { String.valueOf(playerName.toUpperCase(Locale.getDefault())) };
         final String selection = COLUMN_NAME + " = ?";
         Player player = new Player();
 
@@ -91,7 +92,7 @@ public class PlayerDAO extends DBContentProvider implements IPlayerSchema, IPlay
 
     @Override
     public boolean addPlayer(Player player) {
-        player.setName(player.getName().toUpperCase());
+        player.setName(player.getName().toUpperCase(Locale.getDefault()));
         setContentValue(player);
         try {
             System.out.println("OK *** database saved player + " + player.getName());

@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="false"
             android:layout_marginBottom="120dp"
-            android:contentDescription="logo_image"
+            android:contentDescription="@string/conten_description_logo_image"
             app:layout_constraintEnd_toEndOf="parent"
 
             app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-120dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="TextView"
+            android:text="@string/empty_hint"
             android:textAlignment="center"
             android:textColor="@android:color/holo_purple"
             android:textSize="20sp" />

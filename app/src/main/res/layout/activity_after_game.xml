@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
@@ -18,7 +18,7 @@
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical|center"
-        android:hint="your name"
+        android:hint="@string/your_name"
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -32,7 +32,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:clickable="true"
         android:fontFamily="sans-serif-smallcaps"
         android:paddingBottom="5dp"
         android:paddingTop="0dp"
@@ -49,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="SAVE"
+        android:text="@string/save_button"
         android:textColor="@android:color/white" />
 
     <ListView

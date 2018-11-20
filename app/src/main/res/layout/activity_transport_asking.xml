@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,16 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/listViewScores"
+
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="8dp"
-        android:clickable="true"
+
         android:fontFamily="sans-serif-smallcaps"
         android:paddingBottom="5dp"
         android:paddingTop="0dp"
-        android:text="HAVE YOU BEEN IN TRANSPORT?"
+        android:text="@string/HAVE_YOU_BEEN_IN_TRANSPORT"
         android:textAlignment="center"
         android:textColor="@color/menuButtonColor"
         android:textSize="45sp"
@@ -36,7 +36,7 @@
         android:layout_marginTop="0dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="bus"
+        android:text="@string/bus"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -50,7 +50,7 @@
         android:layout_marginTop="230dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="train"
+        android:text="@string/train"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="80dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="tram"
+        android:text="@string/tram"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -80,7 +80,7 @@
         android:layout_marginTop="80dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="car passenger"
+        android:text="@string/car_passenger"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -95,7 +95,7 @@
         android:layout_marginTop="80dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="u-bahn"
+        android:text="@string/u_bahn"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -111,7 +111,7 @@
         android:background="@drawable/rounded_button"
         android:backgroundTint="@android:color/holo_red_light"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="no"
+        android:text="@string/no"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 

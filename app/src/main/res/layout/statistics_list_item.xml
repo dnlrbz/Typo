@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="0dp"
+
     android:clickable="false"
     android:orientation="vertical">
 
@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="context"
+        android:text="@string/context"
         android:textColor="@color/listItemColor"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="keys per minute"
+        android:text="@string/keys_per_minute"
         android:textColor="@color/listItemColor"
         android:textSize="20sp" />
 
@@ -46,7 +46,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="accuracy"
+        android:text="@string/accuracy"
         android:textColor="@color/listItemColor"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -61,7 +61,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="game number"
+        android:text="@string/game_number"
         android:textColor="@color/listItemColor"
         android:textSize="20sp" />
 
@@ -76,9 +76,9 @@
         android:gravity="center_vertical"
         android:padding="0dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="0dp"
+
         android:paddingTop="10dp"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="30sp" />
@@ -93,9 +93,9 @@
         android:gravity="center_vertical"
         android:padding="0dp"
         android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
+
         android:paddingTop="0dp"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="20sp" />
@@ -111,9 +111,9 @@
         android:padding="0dp"
         android:textColor="@color/listItemColor"
         android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
+
         android:paddingTop="0dp"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -139,7 +139,7 @@
         android:gravity="center_vertical"
         android:paddingBottom="0dp"
         android:paddingTop="0dp"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="20sp"
@@ -155,7 +155,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="most missed key"
+        android:text="@string/most_missed_key"
         android:textColor="@color/listItemColor"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -168,7 +168,7 @@
         android:layout_alignTop="@+id/textView70"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="20sp"
@@ -182,7 +182,7 @@
         android:layout_below="@+id/textView70"
         android:fontFamily="sans-serif-smallcaps"
         android:padding="10dp"
-        android:text="Time of the game"
+        android:text="@string/time_of_the_game"
         android:textColor="@color/listItemColor"
         android:textSize="20sp" />
 
@@ -195,7 +195,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_vertical"
         android:padding="0dp"
-        android:text="TextView"
+
         android:textAlignment="center"
         android:textColor="@color/listItemColor"
         android:textSize="20sp" />

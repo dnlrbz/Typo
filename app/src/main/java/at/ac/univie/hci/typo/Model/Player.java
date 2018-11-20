@@ -1,5 +1,6 @@
 package at.ac.univie.hci.typo.Model;
 
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import at.ac.univie.hci.typo.Model.DataBase.Database;
@@ -15,7 +16,7 @@ public class Player {
 
 
     public Player(String name) {
-        this.name = name.toUpperCase();
+        this.name = name.toUpperCase(Locale.getDefault());
     }
 
     public String getName() {
@@ -23,7 +24,7 @@ public class Player {
     }
 
     public void setName(String name) {
-        this.name = name.toUpperCase();
+        this.name = name.toUpperCase(Locale.getDefault());
     }
 
     @Override
