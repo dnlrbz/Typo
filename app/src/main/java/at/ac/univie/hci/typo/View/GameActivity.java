@@ -52,8 +52,6 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         private String TAG = GameActivity.class.getSimpleName();
         BroadcastReceiver broadcastReceiver;
         private TextView txtActivity, txtConfidence;
-        private ImageView imgActivity;
-        private Button btnStartTrcking, btnStopTracking;
         private ArrayList<String> activitiesList;
         private TextView gameWord;
         Words words;
@@ -125,21 +123,35 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
 
 
         timerTextView = (TextView) findViewById(R.id.textViewTimer);
+        timerTextView.setVisibility(View.INVISIBLE);
         timerTextView.setText("00:60");
         //TODO change time to 60 sec
-        final CountDownTimer countDownTimer = new CountDownTimer(60000, 1000) {
+        final CountDownTimer countDownTimer = new CountDownTimer(62000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished/1000 < 10) {
+
+                if (millisUntilFinished/1000 < 12 && millisUntilFinished/1000 >= 2) {
                     timerTextView.setTextColor(Color.RED);
-                    timerTextView.setText("00:0" +String.valueOf(millisUntilFinished / 1000));
+                    timerTextView.setText("00:0" +String.valueOf((millisUntilFinished / 1000)-2));
                 }
-                else {
-                    timerTextView.setText("00:" +String.valueOf(millisUntilFinished / 1000));}
+                if (millisUntilFinished/1000 > 12) {
+                    timerTextView.setText("00:" +String.valueOf((millisUntilFinished / 1000)-2));
+                }
+                if (millisUntilFinished/1000 < 2) {
+                    score.setVisibility(View.INVISIBLE);
+                    gameWord.setVisibility(View.INVISIBLE);
+                    wordToTypeIn.setVisibility(View.INVISIBLE);
+                    txtConfidence.setVisibility(View.INVISIBLE);
+                    timerTextView.setVisibility(View.INVISIBLE);
+                    warningGame.setText(String.valueOf("your score: " + scoreCounter));
+                    warningGame.setTextSize(45);
+                    //warningGame.setTextColor(Color.GREEN);
+                    warningGame.setVisibility(View.VISIBLE);
+                }
+
             }
 
             public void onFinish() {
-                timerTextView.setText("End!");
                 endGame();
 
             }
@@ -161,6 +173,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                 score.setVisibility(View.VISIBLE);
                 warningGame.setVisibility(View.INVISIBLE);
                 startGame.setVisibility(View.INVISIBLE);
+                timerTextView.setVisibility(View.VISIBLE);
                 setFocusOnEditText();
                 countDownTimer.start();
             }
@@ -230,13 +243,11 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
             }
             Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
 
-            //if (confidence > ConstantsForActivities.CONFIDENCE) {
                 getBonusPoints(label);
                 activitiesList.add(label);
-                txtActivity.setText(activitiesList.get(activitiesList.size() - 1).toString());
-
+                txtActivity.setText(String.valueOf("activity: " + activitiesList.get(activitiesList.size() - 1).toString()));
                 System.out.println(label + ": " + confidence);
-            //}
+
         }
     }
 
@@ -249,16 +260,16 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                 txtConfidence.setText("bonus for "+ activity + " + 1");
                 break;
             case ConstantsForActivities.IN_VEHICLE_ACTIVITY:
-                scoreCounter =scoreCounter*3;
-                txtConfidence.setText("bonus for "+ activity + " x3");
+                scoreCounter =scoreCounter*2;
+                txtConfidence.setText("bonus for "+ activity + " x2");
                 break;
             case ConstantsForActivities.RUNNING_ACTIVITY:
                 scoreCounter = scoreCounter*2;
                 txtConfidence.setText("bonus for "+ activity + " x2");
                 break;
             case ConstantsForActivities.TILTING_ACTIVITY:
-                scoreCounter = (int) (scoreCounter * 1.2);
-                txtConfidence.setText("bonus for "+ activity + "+20%");
+                scoreCounter = scoreCounter + (int)(scoreCounter * 0.3);
+                txtConfidence.setText("bonus for "+ activity + " +30%");
                 break;
             case ConstantsForActivities.WALKING_ACTIVITY:
                 scoreCounter = scoreCounter + (int)(scoreCounter * 0.3);
@@ -342,9 +353,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                     typedIn = typedWord.toString().replaceAll("\\s+", "").
                             substring(0, initialWord.length());
 
-                    System.out.println("CHECK TYPED IN AFtER TRANSFORMATION: " +typedIn);
                     if (typedIn.equalsIgnoreCase(initialWord)) {
-                        System.out.println("INCREMENTED SCORE");
                         scoreCounter++;
                         score.setText(String.valueOf("SCORE: " + scoreCounter));
                     }
@@ -390,13 +399,8 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      * End a game and compute and get all Statistics
      */
     private void endGame() {
-
-        // ************* TEMP
-        //activitiesList.add(Activities.IN_VEHICLE_ACTIVITY);
-        // ************* TEMP
-       // System.out.println("ARRAY OF CONTEXT BY THE END OF THE GAME: " + activitiesList.toString());
+        txtActivity.setVisibility(View.INVISIBLE);
         String context = sController.getContextsList(activitiesList).toString();
-        System.out.println("CONTEXTS FOR VIEW: "+context);
         Double accuracy = sController.computeAccuracy(correctWords, incorrectWords);
         String time = sController.getTimeOfTheGame();
         int score = scoreCounter;
@@ -412,8 +416,6 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         bundle.putInt("keysPerMinute", keysPerMinute);
         bundle.putString("context", context);
         if (sController.getContextsList(activitiesList).toLowerCase(Locale.getDefault()).contains(ConstantsForActivities.IN_VEHICLE_ACTIVITY.toLowerCase(Locale.getDefault()))) {
-            System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
-            System.out.println("DIRECTING TRANSPORT ACTIVITY ********");
             intent = new Intent(GameActivity.this, TransportAskingActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);

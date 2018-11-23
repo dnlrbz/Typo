@@ -44,11 +44,9 @@
         android:id="@+id/txt_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignStart="@+id/editTextWordToTypeIn"
         android:layout_below="@+id/textViewScore"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="35dp"
+        android:layout_toEndOf="@+id/buttonBack2"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
@@ -87,11 +85,10 @@
         android:id="@+id/textViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewTimer"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="35dp"
-        android:fontFamily="sans-serif-smallcaps"
+        android:layout_alignTop="@+id/buttonBack2"
 
+        android:layout_toEndOf="@+id/buttonBack2"
+        android:fontFamily="sans-serif-smallcaps"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="30sp" />
 
@@ -125,12 +122,12 @@
         android:id="@+id/textViewTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-smallcaps"
-
         android:textAlignment="center"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="48sp"
@@ -140,11 +137,11 @@
         android:id="@+id/textViewSpaceHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewWarning"
+        android:layout_below="@+id/editTextWordToTypeIn"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-smallcaps"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_green_light"
+        android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
         android:textStyle="bold" />
 
