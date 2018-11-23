@@ -138,6 +138,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                     timerTextView.setText("00:" +String.valueOf((millisUntilFinished / 1000)-2));
                 }
                 if (millisUntilFinished/1000 < 2) {
+                    txtActivity.setVisibility(View.INVISIBLE);
                     score.setVisibility(View.INVISIBLE);
                     gameWord.setVisibility(View.INVISIBLE);
                     wordToTypeIn.setVisibility(View.INVISIBLE);
@@ -399,7 +400,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      * End a game and compute and get all Statistics
      */
     private void endGame() {
-        txtActivity.setVisibility(View.INVISIBLE);
+
         String context = sController.getContextsList(activitiesList).toString();
         Double accuracy = sController.computeAccuracy(correctWords, incorrectWords);
         String time = sController.getTimeOfTheGame();
