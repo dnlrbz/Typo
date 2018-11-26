@@ -68,6 +68,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         private WordsManager wordsManager;
         private ImageButton backButton;
         private TextView hintSpace;
+        private int endScore;
 
 
     @Override
@@ -138,6 +139,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                     timerTextView.setText("00:" +String.valueOf((millisUntilFinished / 1000)-2));
                 }
                 if (millisUntilFinished/1000 < 2) {
+                    endScore = scoreCounter;
                     txtActivity.setVisibility(View.INVISIBLE);
                     score.setVisibility(View.INVISIBLE);
                     gameWord.setVisibility(View.INVISIBLE);
@@ -404,7 +406,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
         String context = sController.getContextsList(activitiesList).toString();
         Double accuracy = sController.computeAccuracy(correctWords, incorrectWords);
         String time = sController.getTimeOfTheGame();
-        int score = scoreCounter;
+        int score = endScore;
         String mostMissedKey = sController.getMostMissedKeyOfTheGame();
         int keysPerMinute = wordsManager.countKeysOfAllWords(incorrectWords);
         stopTracking();
