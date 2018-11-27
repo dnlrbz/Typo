@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/textViewHead"
         android:layout_width="wrap_content"
-        android:layout_height="119dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
 
@@ -45,17 +45,21 @@
         android:id="@+id/listViewStats"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:layout_alignBottom="@+id/textViewHead"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="30dp"
         android:divider="@android:color/black"
-        android:dividerHeight="2dp"/>
+        android:dividerHeight="2dp" />
 
     <TextView
         android:id="@+id/textViewHintdelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/listViewStats"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="117dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/choose_item_to_delete_or_press_back"
         android:textColor="@android:color/holo_red_light"
