@@ -1,4 +1,4 @@
-# Typo
+# Typo: Type On-the-Go as fast as you can!
 Inspecting human errors on the go
 
 To install this game on your device, allow debugging mode and run it through Android Studio. 
