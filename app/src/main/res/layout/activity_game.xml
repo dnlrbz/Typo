@@ -109,7 +109,7 @@
     <TextView
         android:id="@+id/textViewWarning"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="136dp"
         android:layout_below="@+id/txt_activity"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-smallcaps"
