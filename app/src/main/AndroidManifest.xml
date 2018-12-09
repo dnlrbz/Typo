@@ -10,8 +10,11 @@
         android:icon="@mipmap/typo_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".View.MainActivity">
+        android:theme="@style/AppTheme"
+       >
+        <activity android:name=".View.MainActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,13 +27,14 @@
 
         <activity
             android:name=".View.GameActivity"
-            android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".View.ScoresActivity" />
-        <activity android:name=".View.StatisticsActivity" />
-        <activity android:name=".View.AfterGameActivity" />
-        <activity android:name=".View.TransportAskingActivity" />
-        <activity android:name=".View.AboutActivity"></activity>
-        <activity android:name=".preferences"></activity>
+            android:windowSoftInputMode="stateVisible"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".View.ScoresActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".View.StatisticsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".View.AfterGameActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".View.TransportAskingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".View.AboutActivity" android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>
