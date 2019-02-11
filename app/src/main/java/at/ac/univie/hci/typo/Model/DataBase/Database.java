@@ -26,8 +26,6 @@ public class Database {
         mPlayerDAO = new PlayerDAO(mDb);
         mGameStatsDAO = new GameStatsDAO(mDb);
 
-        System.out.println("Database OPENED****");
-
         return this;
     }
 
@@ -51,7 +49,6 @@ public class Database {
 
             db.execSQL(IPlayerSchema.PLAYER_TABLE_CREATE);
             db.execSQL(IGameStatisticsSchema.GAME_STATISTICS_TABLE_CREATE);
-
 
         }
 

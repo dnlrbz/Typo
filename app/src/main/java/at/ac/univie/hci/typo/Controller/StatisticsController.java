@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Model.DataBase.Database;
 import at.ac.univie.hci.typo.Model.GameStatistics;

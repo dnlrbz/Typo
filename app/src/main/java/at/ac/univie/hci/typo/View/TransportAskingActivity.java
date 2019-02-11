@@ -1,13 +1,11 @@
 package at.ac.univie.hci.typo.View;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Controller.StatisticsController;

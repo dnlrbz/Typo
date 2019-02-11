@@ -4,10 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,28 +20,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Random.*;
 
 import com.google.android.gms.location.DetectedActivity;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import at.ac.univie.hci.typo.Controller.ActivityManagement.Activities;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.BackgroundActivityService;
 import at.ac.univie.hci.typo.Controller.ActivityManagement.ConstantsForActivities;
 import at.ac.univie.hci.typo.Controller.StatisticsController;
 import at.ac.univie.hci.typo.Controller.WordsManager;
-import at.ac.univie.hci.typo.Model.DataBase.Database;
-import at.ac.univie.hci.typo.Model.GameStatistics;
-import at.ac.univie.hci.typo.Model.Player;
 import at.ac.univie.hci.typo.Model.Words;
 import at.ac.univie.hci.typo.R;
 
@@ -249,7 +237,7 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
                 getBonusPoints(label);
                 activitiesList.add(label);
                 txtActivity.setText(String.valueOf("activity: " + activitiesList.get(activitiesList.size() - 1).toString()));
-                System.out.println(label + ": " + confidence);
+               // System.out.println(label + ": " + confidence);
 
         }
     }
@@ -434,7 +422,10 @@ public class GameActivity extends AppCompatActivity implements TextWatcher {
      * @param view
      */
     public void openMainActivityFromGame(View view) {
+
         stopTracking();
+        this.finish();
         startActivity(new Intent(this, MainActivity.class));
+
     }
 }
