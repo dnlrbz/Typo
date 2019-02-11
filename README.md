@@ -18,3 +18,5 @@ Game uses Activity Recognition API, to determine activites of the player during 
 <td><img src="https://github.com/dnlrbz/Typo/blob/master/images/main_screen.jpg" alt="Main Screen" width="220"/></td>
   </tr>
 </table>
+
+https://www.youtube.com/watch?v=JjQIYjssFOM
